@@ -6,64 +6,64 @@ void DataCenter::start()
 }
 
 // Registration
-bool registerMember(Person& member)
+bool DataCenter::registerMember(Person& member)
 {
 	return false;
 }
 
-bool registerProvider(Person& provider)
+bool DataCenter::registerProvider(Person& provider)
 {
 	return false;
 }
 
-bool updateMember(Person& member)
+bool DataCenter::updateMember(Person& member)
 {
 	return false;
 }
 
-bool updateProvider(Person& provider)
+bool DataCenter::updateProvider(Person& provider)
 {
 	return false;
 }
 
-bool removeMember(int memberNumber)
+bool DataCenter::removeMember(int memberNumber)
 {
 	return false;
 }
 
-bool removeProvider(int providerNumber)
+bool DataCenter::removeProvider(int providerNumber)
 {
 	return false;
 }
 
-bool validateMember(int memberNumber)
+bool DataCenter::validateMember(int memberNumber)
 {
 	return false;
 }
 
 //Reports
-void generateMemberReport()
+void DataCenter::generateMemberReport()
 {
 
 }
 
-void generateProviderReport()
+void DataCenter::generateProviderReport()
 {
 
 }
 
-void generateSummaryReport()
+void DataCenter::generateSummaryReport()
 {
 
 }
 
 // Filesystem
-std::string getProviderDirectory()
+std::string DataCenter::getProviderDirectory()
 {
 	return "Provider Directory";
 }
 
-bool saveServiceRecord()
+bool DataCenter::saveServiceRecord()
 {
 	return false;
 }
