@@ -6,39 +6,39 @@ void DataCenter::start()
 }
 
 // Registration
-bool DataCenter::registerMember(Person& member)
+bool DataCenter::registerMember(Person* member)
+{
+	return registration.registerMember(member);
+}
+
+bool DataCenter::registerProvider(Person* provider)
+{
+	return registration.registerProvider(provider);
+}
+
+bool DataCenter::updateMember(Person* member)
 {
 	return false;
 }
 
-bool DataCenter::registerProvider(Person& provider)
-{
-	return false;
-}
-
-bool DataCenter::updateMember(Person& member)
-{
-	return false;
-}
-
-bool DataCenter::updateProvider(Person& provider)
+bool DataCenter::updateProvider(Person* provider)
 {
 	return false;
 }
 
 bool DataCenter::removeMember(int memberNumber)
 {
-	return false;
+	return registration.removeMember(memberNumber);
 }
 
 bool DataCenter::removeProvider(int providerNumber)
 {
-	return false;
+	return registration.removeProvider(providerNumber);
 }
 
 bool DataCenter::validateMember(int memberNumber)
 {
-	return false;
+	return registration.validateMemberCard(memberNumber);
 }
 
 //Reports
