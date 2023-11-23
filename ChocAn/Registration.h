@@ -9,10 +9,10 @@ class Registration
 public:
 	Registration() {};
 	~Registration() {};
-	void registerMember(Person* member);
-	void registerProvider(Person* provider);
-	void removeMember(int cardNumber);
-	void removeProvider(int providerNumber);
+	bool registerMember(Person* member);
+	bool registerProvider(Person* provider);
+	bool removeMember(int cardNumber);
+	bool removeProvider(int providerNumber);
 	bool validateMemberCard(int memberNumber);
 
 private:

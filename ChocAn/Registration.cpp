@@ -1,23 +1,27 @@
 #include "Registration.h"
 
-void Registration::registerMember(Person* member)
+bool Registration::registerMember(Person* member)
 {
 	members.push_back(member);
+	return false;
 }
 
-void Registration::registerProvider(Person* provider)
+bool Registration::registerProvider(Person* provider)
 {
 	providers.push_back(provider);
+	return false;
 }
 
-void Registration::removeMember(int cardNumber)
+bool Registration::removeMember(int cardNumber)
 {
 	// Remove from member list by number
+	return false;
 }
 
-void Registration::removeProvider(int providerNumber)
+bool Registration::removeProvider(int providerNumber)
 {
 	// Remove from provider list by number
+	return false;
 }
 
 bool Registration::validateMemberCard(int memberNumber)
