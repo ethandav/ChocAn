@@ -18,4 +18,5 @@ public:
 private:
 	std::list<Person*> members;
 	std::list<Person*> providers;
+	
 };

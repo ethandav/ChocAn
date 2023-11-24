@@ -2,7 +2,10 @@
 
 bool Registration::registerMember(Person* member)
 {
-	members.push_back(member);
+	if(member != nullptr){
+		members.push_back(member);
+		return true;
+	}
 	return false;
 }
 
