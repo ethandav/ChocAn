@@ -13,9 +13,9 @@ public:
 
 	void start();
 	void registerMember();
+	void registerProvider();
 private:
 	// Registration
-	bool registerProvider(Person* provider);
 	bool updateMember(Person* member);
 	bool updateProvider(Person* provider);
 	bool removeMember(int memberNumber);

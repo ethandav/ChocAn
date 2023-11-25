@@ -25,9 +25,15 @@ void DataCenter::registerMember()
 	}
 }
 
-bool DataCenter::registerProvider(Person* provider)
+void DataCenter::registerProvider()
 {
-	return registration.registerProvider(provider);
+	Person* newProvider = new Person();
+	terminal.getPersonInput(newProvider);
+
+	if (registration.registerProvider(newProvider))
+	{
+		terminal.displayString("Provider succesfully Added!");
+	}
 }
 
 bool DataCenter::updateMember(Person* member)

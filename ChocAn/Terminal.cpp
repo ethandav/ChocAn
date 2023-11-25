@@ -24,6 +24,9 @@ void Terminal::open()
 		case 1:
 			dc->registerMember();
 			break;
+		case 2:
+			dc->registerProvider();
+			break;
 		case 8:
 			running = false;
 			break;
@@ -37,6 +40,7 @@ void Terminal::displayMenu()
 {
 	std::cout << "Welcome to ChocAn! Enter 8 to quit\n";
 	std::cout << "1 - Register Member\n";
+	std::cout << "2 - Register Provider\n";
 }
 
 void Terminal::getInputInt(int* input)

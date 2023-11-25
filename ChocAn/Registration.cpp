@@ -8,6 +8,12 @@ Registration::~Registration()
 		delete members.front();
 		members.pop_front();
 	}
+
+	while (!providers.empty())
+	{
+		delete providers.front();
+		providers.pop_front();
+	}
 }
 
 bool Registration::registerMember(Person* member)
@@ -21,7 +27,10 @@ bool Registration::registerMember(Person* member)
 
 bool Registration::registerProvider(Person* provider)
 {
-	providers.push_back(provider);
+	if(provider != nullptr){
+		providers.push_back(provider);
+		return true;
+	}
 	return false;
 }
 
