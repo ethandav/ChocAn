@@ -1,4 +1,14 @@
 #include "Registration.h"
+#include <iostream>
+
+Registration::~Registration()
+{
+	while (!members.empty())
+	{
+		delete members.front();
+		members.pop_front();
+	}
+}
 
 bool Registration::registerMember(Person* member)
 {

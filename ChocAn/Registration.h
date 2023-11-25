@@ -8,7 +8,7 @@ class Registration
 {
 public:
 	Registration() {};
-	~Registration() {};
+	~Registration();
 	bool registerMember(Person* member);
 	bool registerProvider(Person* provider);
 	bool removeMember(int cardNumber);

@@ -2,13 +2,27 @@
 
 void DataCenter::start()
 {
+	try
+	{
+		terminal.connect(this);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
 	terminal.open();
 }
 
 // Registration
-bool DataCenter::registerMember(Person* member)
+void DataCenter::registerMember()
 {
-	return registration.registerMember(member);
+	Person* newMember = new Person();
+	terminal.getPersonInput(newMember);
+
+	if (registration.registerMember(newMember))
+	{
+		terminal.displayString("Member succesfully Added!");
+	}
 }
 
 bool DataCenter::registerProvider(Person* provider)

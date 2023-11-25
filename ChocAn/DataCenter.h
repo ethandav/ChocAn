@@ -12,9 +12,9 @@ public:
 	~DataCenter() {};
 
 	void start();
+	void registerMember();
 private:
 	// Registration
-	bool registerMember(Person* member);
 	bool registerProvider(Person* provider);
 	bool updateMember(Person* member);
 	bool updateProvider(Person* provider);
