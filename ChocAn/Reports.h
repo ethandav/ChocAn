@@ -4,6 +4,8 @@
 #include <iostream>
 #include "Registration.h"
 
+/* Header file to generate Member and Provider reports */
+
 class Reports
 {
 public:
@@ -14,7 +16,7 @@ public:
 	void generateMemberReports(const std::list<Member>& members);	
 	void generateProviderReports(const std::list<Provider>& providers);	
 	// manual reports
-	void generateMemberReportById(const std::list<Member>& members, const std::string & memberId);
+	void generateMemberReportById(const std::list<Member>& members, const std::string& memberId);
 	void generateProviderReportById(const std::list<Provider>& providers, const std::string& providerId);
 
 
