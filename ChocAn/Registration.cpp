@@ -2,12 +2,12 @@
 
 void Registration::registerMember(Person* member)
 {
-	members.push_back(member);
+	// members.push_back(member);
 }
 
 void Registration::registerProvider(Person* provider)
 {
-	providers.push_back(provider);
+	// providers.push_back(provider);
 }
 
 void Registration::removeMember(int cardNumber)

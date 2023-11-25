@@ -17,6 +17,18 @@ struct Person
 	int			number;
 };
 
+struct Member
+{
+	Person person;
+	// List of services taken
+};
+
+struct Provider 
+{
+	Person person;
+	// List of services given
+};
+
 class Registration
 {
 public:
@@ -29,6 +41,6 @@ public:
 	bool validateMemberCard(int memberNumber);
 
 private:
-	std::list<Person*> members;
-	std::list<Person*> providers;
+	std::list<Member> members;
+	std::list<Provider> providers;
 };

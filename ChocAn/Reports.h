@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 #include <list>
+#include <iostream>
+#include "Registration.h"
 
 class Reports
 {
@@ -12,8 +14,8 @@ public:
 	void generateMemberReports(const std::list<Member>& members);	
 	void generateProviderReports(const std::list<Provider>& providers);	
 	// manual reports
-	void generateMemberReportById(const std::string & memberId);
-	void generateProviderReportById(const std::string& providerId);
+	void generateMemberReportById(const std::list<Member>& members, const std::string & memberId);
+	void generateProviderReportById(const std::list<Provider>& providers, const std::string& providerId);
 
 
 private:
