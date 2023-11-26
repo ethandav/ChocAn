@@ -34,23 +34,46 @@ bool Registration::registerProvider(Person* provider)
 	return false;
 }
 
-bool Registration::removeMember(const int cardNumber)
+bool Registration::removeMember(const int memberNumber)
 {
-	// Remove from member list by number
+	Person* target = findByNumber(members, memberNumber);
+	if (target != nullptr)
+	{
+		members.remove(target);
+		delete target;
+		return true;
+	}
 	return false;
 }
 
 bool Registration::removeProvider(const int providerNumber)
 {
-	// Remove from provider list by number
+	Person* target = findByNumber(members, providerNumber);
+	if (target != nullptr)
+	{
+		members.remove(target);
+		delete target;
+		return true;
+	}
 	return false;
 }
 
 bool Registration::validateMemberCard(int memberNumber)
 {
-	bool valid = false;
+	if (findByNumber(members, memberNumber) != nullptr)
+		return true;
+	else
+		return false;
+}
 
-	// Check member list for member number
-
-	return valid;
+Person* Registration::findByNumber(const std::list<Person*>& list, int number)
+{
+	for (const auto& ptr : list)
+	{
+		if (ptr->number == number)
+		{
+			return ptr;
+		}
+	}
+	return nullptr;
 }

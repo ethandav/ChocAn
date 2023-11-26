@@ -77,9 +77,19 @@ void DataCenter::removeProvider()
 	}
 }
 
-bool DataCenter::validateMember(int memberNumber)
+void DataCenter::validateMember()
 {
-	return registration.validateMemberCard(memberNumber);
+	int memberNumber = 0;
+	terminal.displayString("Member Number: ");
+	terminal.getIntInput(&memberNumber);
+	if (registration.validateMemberCard(memberNumber))
+	{
+		terminal.displayString("MemberCard Valid\n");
+	}
+	else
+	{
+		terminal.displayString("MemberCard Invalid\n");
+	}
 }
 
 //Reports
