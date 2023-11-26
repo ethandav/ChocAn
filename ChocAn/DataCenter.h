@@ -14,12 +14,13 @@ public:
 	void start();
 	void registerMember();
 	void registerProvider();
+	void removeMember();
+	void removeProvider();
+
 private:
 	// Registration
 	bool updateMember(Person* member);
 	bool updateProvider(Person* provider);
-	bool removeMember(int memberNumber);
-	bool removeProvider(int providerNumber);
 	bool validateMember(int memberNumber);
 
 	//Reports

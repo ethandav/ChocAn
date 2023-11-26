@@ -21,7 +21,7 @@ void DataCenter::registerMember()
 
 	if (registration.registerMember(newMember))
 	{
-		terminal.displayString("Member succesfully Added!");
+		terminal.displayString("Member succesfully Added!\n");
 	}
 }
 
@@ -32,7 +32,7 @@ void DataCenter::registerProvider()
 
 	if (registration.registerProvider(newProvider))
 	{
-		terminal.displayString("Provider succesfully Added!");
+		terminal.displayString("Provider succesfully Added!\n");
 	}
 }
 
@@ -46,14 +46,35 @@ bool DataCenter::updateProvider(Person* provider)
 	return false;
 }
 
-bool DataCenter::removeMember(int memberNumber)
+void DataCenter::removeMember()
 {
-	return registration.removeMember(memberNumber);
+	int memberNumber = 0;
+
+	terminal.displayString("Member Number: ");
+	terminal.getIntInput(&memberNumber);
+	if (registration.removeMember(memberNumber))
+	{
+		terminal.displayString("Member Removed\n");
+	}
+	else
+	{
+		terminal.displayString("Member not found\n");
+	}
 }
 
-bool DataCenter::removeProvider(int providerNumber)
+void DataCenter::removeProvider()
 {
-	return registration.removeProvider(providerNumber);
+	int providerNumber = 0;
+	terminal.displayString("Provider Number: ");
+	terminal.getIntInput(&providerNumber);
+	if (registration.removeProvider(providerNumber))
+	{
+		terminal.displayString("Provider Removed\n");
+	}
+	else
+	{
+		terminal.displayString("Provider not found\n");
+	}
 }
 
 bool DataCenter::validateMember(int memberNumber)

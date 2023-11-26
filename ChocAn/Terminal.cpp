@@ -18,7 +18,7 @@ void Terminal::open()
 	while (running)
 	{
 		displayMenu();
-		getInputInt(&input);
+		getIntInput(&input);
 		switch (input)
 		{
 		case 1:
@@ -26,6 +26,12 @@ void Terminal::open()
 			break;
 		case 2:
 			dc->registerProvider();
+			break;
+		case 3:
+			dc->removeMember();
+			break;
+		case 4:
+			dc->removeProvider();
 			break;
 		case 8:
 			running = false;
@@ -41,11 +47,15 @@ void Terminal::displayMenu()
 	std::cout << "Welcome to ChocAn! Enter 8 to quit\n";
 	std::cout << "1 - Register Member\n";
 	std::cout << "2 - Register Provider\n";
+	std::cout << "3 - Remove Member\n";
+	std::cout << "4 - Remove Provider" << std::endl;
+	std::cout << "Enter your choice: ";
 }
 
-void Terminal::getInputInt(int* input)
+void Terminal::getIntInput(int* input)
 {
 	std::cin >> *input;
+	flushInput();
 }
 
 void Terminal::getPersonInput(Person* person)
@@ -72,7 +82,7 @@ void Terminal::getPersonInput(Person* person)
 
 void Terminal::displayString(std::string displayStr)
 {
-	std::cout << displayStr << std::endl;
+	std::cout << displayStr;
 }
 
 void Terminal::flushInput()

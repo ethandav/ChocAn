@@ -34,13 +34,13 @@ bool Registration::registerProvider(Person* provider)
 	return false;
 }
 
-bool Registration::removeMember(int cardNumber)
+bool Registration::removeMember(const int cardNumber)
 {
 	// Remove from member list by number
 	return false;
 }
 
-bool Registration::removeProvider(int providerNumber)
+bool Registration::removeProvider(const int providerNumber)
 {
 	// Remove from provider list by number
 	return false;
