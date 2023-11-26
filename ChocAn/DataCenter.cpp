@@ -109,9 +109,9 @@ void DataCenter::generateSummaryReport()
 }
 
 // Filesystem
-std::string DataCenter::getProviderDirectory()
+void DataCenter::getProviderDirectory()
 {
-	return "Provider Directory";
+	terminal.displayString(filesystem.getProviderDirectory());
 }
 
 bool DataCenter::saveServiceRecord()

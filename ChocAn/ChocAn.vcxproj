@@ -144,6 +144,9 @@
     <ClInclude Include="Reports.h" />
     <ClInclude Include="Terminal.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="providerDirectory.csv" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

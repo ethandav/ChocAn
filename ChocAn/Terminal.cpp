@@ -33,6 +33,9 @@ void Terminal::open()
 		case 4:
 			dc->removeProvider();
 			break;
+		case 5:
+			dc->getProviderDirectory();
+			break;
 		case 8:
 			running = false;
 			break;
@@ -48,7 +51,8 @@ void Terminal::displayMenu()
 	std::cout << "1 - Register Member\n";
 	std::cout << "2 - Register Provider\n";
 	std::cout << "3 - Remove Member\n";
-	std::cout << "4 - Remove Provider" << std::endl;
+	std::cout << "4 - Remove Provider\n";
+	std::cout << "5 - Show Provider Directory" << std::endl;
 	std::cout << "Enter your choice: ";
 }
 

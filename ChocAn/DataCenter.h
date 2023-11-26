@@ -17,6 +17,7 @@ public:
 	void removeMember();
 	void removeProvider();
 	void validateMember();
+	void getProviderDirectory();
 
 private:
 	// Registration
@@ -29,7 +30,6 @@ private:
 	void generateSummaryReport();
 
 	// Filesystem
-	std::string getProviderDirectory();
 	bool saveServiceRecord();
 
 	Terminal terminal;
