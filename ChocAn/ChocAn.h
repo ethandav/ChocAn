@@ -1,5 +1,17 @@
 #pragma once
 #include <string>
+#include <list>
+
+struct ServiceRecord
+{
+	std::string	currTime;
+	std::string	servTime;
+	int			providerNumber;
+	int			memberNumber;
+	int			serviceCode;
+	float		totalFee;
+	std::string comments;
+};
 
 struct Address
 {
@@ -11,19 +23,9 @@ struct Address
 
 struct Person
 {
-	std::string name;
-	Address		address;
-	int			number;
-};
-
-struct ServiceRecord
-{
-	std::string	currTime;
-	std::string	servTime;
-	int			providerNumber;
-	int			memberNumber;
-	int			serviceCode;
-	float		totalFee;
-	std::string comments;
+	std::string					name;
+	Address						address;
+	int							number;
+	std::list<ServiceRecord*>	services;
 };
 

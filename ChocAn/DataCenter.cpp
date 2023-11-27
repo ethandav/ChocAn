@@ -121,7 +121,7 @@ void DataCenter::validateMember()
 //Reports
 void DataCenter::generateMemberReport()
 {
-
+	Person* person = new Person();
 }
 
 void DataCenter::generateProviderReport()
@@ -154,7 +154,7 @@ void DataCenter::enterServiceRecord()
 
 	terminal.displayString("Provider Number: ");
 	terminal.getIntInput(&providerNumber);
-	provider = registration.getMember(providerNumber);
+	provider = registration.getProvider(providerNumber);
 	if (provider == nullptr)
 	{
 		terminal.displayString("Provider Number invalid\n");
@@ -183,14 +183,13 @@ void DataCenter::enterServiceRecord()
 	if (filesystem.saveServiceRecord(record))
 	{
 		terminal.displayString("Service Record Saved\n");
+		provider->services.push_back(record);
+		member->services.push_back(record);
 	}
 	else
 	{
 		terminal.displayString("Error creating service record.\n");
 	}
-
-	// Temporary. Records will be saved to member list eventually
-	delete record;
 }
 
 void DataCenter::editPerson(Person* person)

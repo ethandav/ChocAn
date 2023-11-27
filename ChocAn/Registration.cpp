@@ -5,6 +5,11 @@ Registration::~Registration()
 {
 	while (!members.empty())
 	{
+		while (!members.front()->services.empty())
+		{
+			delete members.front()->services.front();
+			members.front()->services.pop_front();
+		}
 		delete members.front();
 		members.pop_front();
 	}
@@ -73,7 +78,7 @@ Person* Registration::getMember(int memberNumber)
 
 Person* Registration::getProvider(int providerNumber)
 {
-	return findByNumber(members, providerNumber);
+	return findByNumber(providers, providerNumber);
 }
 
 Person* Registration::findByNumber(const std::list<Person*>& list, int number)
