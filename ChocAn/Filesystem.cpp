@@ -43,6 +43,7 @@ bool Filesystem::readFile(std::ifstream& fs)
 	{
 		fileContents.push_back(line);
 	}
+	return true;
 }
 
 bool Filesystem::closeFile(std::ifstream& fs)
