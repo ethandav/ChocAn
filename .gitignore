@@ -16,3 +16,4 @@
 *.idb
 *.pdb
 *.exe
+*.sqlite

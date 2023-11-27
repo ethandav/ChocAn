@@ -1,6 +1,6 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall
-SRCDIR = src
+SRCDIR = ChocAn
 OBJDIR = obj
 BINDIR = bin
 TARGET = ChocAn
