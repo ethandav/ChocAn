@@ -66,6 +66,16 @@ bool Registration::validateMemberCard(int memberNumber)
 		return false;
 }
 
+Person* Registration::getMember(int memberNumber)
+{
+	return findByNumber(members, memberNumber);
+}
+
+Person* Registration::getProvider(int providerNumber)
+{
+	return findByNumber(members, providerNumber);
+}
+
 Person* Registration::findByNumber(const std::list<Person*>& list, int number)
 {
 	for (const auto& ptr : list)
@@ -76,4 +86,9 @@ Person* Registration::findByNumber(const std::list<Person*>& list, int number)
 		}
 	}
 	return nullptr;
+}
+
+bool Registration::editPerson(Person* person)
+{
+	return false;
 }

@@ -14,15 +14,15 @@ public:
 	void start();
 	void registerMember();
 	void registerProvider();
+	void updateMember();
+	void updateProvider();
 	void removeMember();
 	void removeProvider();
 	void validateMember();
 	void getProviderDirectory();
 
 private:
-	// Registration
-	bool updateMember(Person* member);
-	bool updateProvider(Person* provider);
+	void editPerson(Person* person);
 
 	//Reports
 	void generateMemberReport();

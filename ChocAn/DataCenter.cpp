@@ -36,14 +36,40 @@ void DataCenter::registerProvider()
 	}
 }
 
-bool DataCenter::updateMember(Person* member)
+void DataCenter::updateMember()
 {
-	return false;
+	int memberNumber = 0;
+	Person* person = nullptr;
+
+	terminal.displayString("Member Number: ");
+	terminal.getIntInput(&memberNumber);
+
+	person = registration.getMember(memberNumber);
+	if (person == nullptr)
+	{
+		terminal.displayString("Member not found\n");
+		return;
+	}
+
+	editPerson(person);
 }
 
-bool DataCenter::updateProvider(Person* provider)
+void DataCenter::updateProvider()
 {
-	return false;
+	int providerNumber = 0;
+	Person* person = nullptr;
+
+	terminal.displayString("Provider Number: ");
+	terminal.getIntInput(&providerNumber);
+
+	person = registration.getProvider(providerNumber);
+	if (person == nullptr)
+	{
+		terminal.displayString("Provider not found\n");
+		return;
+	}
+
+	editPerson(person);
 }
 
 void DataCenter::removeMember()
@@ -117,4 +143,21 @@ void DataCenter::getProviderDirectory()
 bool DataCenter::saveServiceRecord()
 {
 	return false;
+}
+
+void DataCenter::editPerson(Person* person)
+{
+	if (person != nullptr)
+	{
+		std::string personDisplay = (
+			"Current Name: " + person->name + "\n" +
+			"Current ID Number: " + std::to_string(person->number) + "\n" +
+			"Current Address: " + person->address.addr + "\n" +
+            "Current City: " + person->address.city + "\n" +
+            "Current State: " + person->address.state + "\n" +
+            "Current Zip Code: " + std::to_string(person->address.zip) + "\n"
+		);
+		terminal.displayString(personDisplay);
+		terminal.getPersonInput(person);
+	}
 }
