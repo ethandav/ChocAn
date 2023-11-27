@@ -18,6 +18,30 @@ std::string Filesystem::getProviderDirectory()
 	return parseContents();
 }
 
+bool Filesystem::saveServiceRecord(ServiceRecord* record)
+{
+	std::string fn = "./filesystem/Service_" + std::to_string(record->serviceCode) + "_" + std::to_string(record->memberNumber);
+	std::ofstream of(fn);
+
+	if (of.is_open())
+	{
+		of << record->currTime + "\n";
+		of << record->servTime + "\n";
+		of << std::to_string(record->memberNumber) + "\n";
+		of << std::to_string(record->providerNumber) + "\n";
+		of << std::to_string(record->serviceCode) + "\n";
+		of << std::to_string(record->totalFee) + "\n";
+		of << record->comments << std::endl;
+
+		of.close();
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool Filesystem::openFile(std::ifstream& fs, const std::string& filename)
 {
 	fs.open(filename);

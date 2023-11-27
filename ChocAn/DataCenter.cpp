@@ -142,11 +142,15 @@ void DataCenter::getProviderDirectory()
 
 void DataCenter::enterServiceRecord()
 {
-	ServiceRecord*	record			= nullptr;
-	Person*			provider		= nullptr;
-	Person*			member			= nullptr;
-	int				memberNumber	= 0;
-	int				providerNumber	= 0;
+	ServiceRecord*		record			= nullptr;
+	Person*				provider		= nullptr;
+	Person*				member			= nullptr;
+	auto				now				= std::chrono::system_clock::now();
+	std::time_t			currTime		= 0;
+	int					memberNumber	= 0;
+	int					providerNumber	= 0;
+	std::tm				localTime;
+	std::stringstream	ss;
 
 	terminal.displayString("Provider Number: ");
 	terminal.getIntInput(&providerNumber);
@@ -167,8 +171,26 @@ void DataCenter::enterServiceRecord()
 	}
 
 	record = new ServiceRecord();
+	record->providerNumber= providerNumber;
+	record->memberNumber = memberNumber;
+
+	currTime = std::chrono::system_clock::to_time_t(now);
+	localtime_s(&localTime, &currTime);
+	ss << std::put_time(&localTime, "%m-%d-%Y %H:%M");
+	record->currTime = ss.str();
 	
 	terminal.getServiceRecordInput(record);
+	if (filesystem.saveServiceRecord(record))
+	{
+		terminal.displayString("Service Record Saved\n");
+	}
+	else
+	{
+		terminal.displayString("Error creating service record.\n");
+	}
+
+	// Temporary. Records will be saved to member list eventually
+	delete record;
 }
 
 void DataCenter::editPerson(Person* person)

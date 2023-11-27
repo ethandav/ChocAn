@@ -4,6 +4,8 @@
 #include <string>
 #include <vector>
 
+#include "ChocAn.h"
+
 class Filesystem
 {
 public:
@@ -11,6 +13,7 @@ public:
 	~Filesystem() {};
 
 	std::string getProviderDirectory();
+	bool saveServiceRecord(ServiceRecord* record);
 
 private:
 	bool openFile(std::ifstream& fs, const std::string& filename);

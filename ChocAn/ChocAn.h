@@ -18,7 +18,7 @@ struct Person
 
 struct ServiceRecord
 {
-	time_t		currTime;
+	std::string	currTime;
 	std::string	servTime;
 	int			providerNumber;
 	int			memberNumber;
