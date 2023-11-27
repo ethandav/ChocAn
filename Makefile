@@ -13,7 +13,7 @@ all: $(BINDIR)/$(TARGET)
 $(BINDIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(BINDIR)
 	@mkdir -p $(BINDIR)/filesystem
-	@cp $(SRCDIR)/providerDirectory.csv $(BINDIR)/filesystem
+	@cp -R $(SRCDIR)/filesystem $(BINDIR)/
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
