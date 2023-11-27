@@ -121,12 +121,33 @@ void DataCenter::validateMember()
 //Reports
 void DataCenter::generateMemberReport()
 {
-	Person* person = new Person();
+	//Person* person = new Person();
+	//members referes to std::list<Member>& members
+	/*
+	if(reports.generateMemberReports(members))
+	{
+		terminal.displayString("Member Report Generation Success\n");
+	}
+	else
+	{
+		terminal.displayString("Member Report Generation Failed\n");
+	}
+	*/
 }
 
 void DataCenter::generateProviderReport()
 {
-
+	//providers refers to std::list<Provider>& providers
+	/*
+	if(reports.generateProviderReports(providers))
+	{
+		terminal.displayString("Provider Report Generation Success\n");
+	}
+	else
+	{
+		terminal.displayString("Provider Report Generation Failed\n");
+	}
+	*/
 }
 
 void DataCenter::generateSummaryReport()
