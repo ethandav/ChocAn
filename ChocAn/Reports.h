@@ -13,11 +13,11 @@ public:
 	Reports() {};
 	~Reports() {};
 	// weekly reports
-	void generateMemberReports(const std::list<Member>& members);	
-	void generateProviderReports(const std::list<Provider>& providers);	
+	bool generateMemberReports(const std::list<Member>& members);	
+	bool generateProviderReports(const std::list<Provider>& providers);	
 	// manual reports
-	void generateMemberReportById(const std::list<Member>& members, const std::string& memberId);
-	void generateProviderReportById(const std::list<Provider>& providers, const std::string& providerId);
+	bool generateMemberReportById(const std::list<Member>& members, const std::string& memberId);
+	bool generateProviderReportById(const std::list<Provider>& providers, const std::string& providerId);
 
 
 private:
