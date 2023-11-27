@@ -3,7 +3,7 @@
 std::string Filesystem::getProviderDirectory()
 {
 	std::ifstream fs;
-	if (!openFile(fs, "providerDirectory.csv"))
+	if (!openFile(fs, "./filesystem/providerDirectory.csv"))
 	{
 		return "Provider Directory Unavailable\n";
 	}
