@@ -43,6 +43,9 @@ void Terminal::open()
 			dc->getProviderDirectory();
 			break;
 		case 8:
+			dc->enterServiceRecord();
+			break;
+		case 9:
 			running = false;
 			break;
 		default:
@@ -53,14 +56,15 @@ void Terminal::open()
 
 void Terminal::displayMenu()
 {
-	std::cout << "Welcome to ChocAn! Enter 8 to quit\n";
+	std::cout << "Welcome to ChocAn! Enter 9 to quit\n";
 	std::cout << "1 - Register Member\n";
 	std::cout << "2 - Register Provider\n";
 	std::cout << "3 - Update Member\n";
 	std::cout << "4 - Update Provider\n";
 	std::cout << "5 - Remove Member\n";
 	std::cout << "6 - Remove Provider\n";
-	std::cout << "7 - Show Provider Directory" << std::endl;
+	std::cout << "7 - Show Provider Directory\n";
+	std::cout << "8 - Enter Service Record" << std::endl;
 	std::cout << "Enter your choice: ";
 }
 
@@ -90,6 +94,20 @@ void Terminal::getPersonInput(Person* person)
 	std::cout << "Zip: ";
 	std::cin >> person->address.zip;
 	flushInput();
+}
+
+void Terminal::getServiceRecordInput(ServiceRecord* record)
+{
+	std::cout << "Date of Service (MM-DD-YYYY): ";
+	std::getline(std::cin, record->servTime);
+	std::cout << "Service Code: ";
+	std::cin >> record->serviceCode;
+	flushInput();
+	std::cout << "Total Fee: ";
+	std::cin >> record->totalFee;
+	flushInput();
+	std::cout << "Additional Comments: ";
+	std::getline(std::cin, record->comments);
 }
 
 void Terminal::displayString(std::string displayStr)

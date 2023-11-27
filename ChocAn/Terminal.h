@@ -2,7 +2,7 @@
 #include <iostream>
 #include <limits>
 
-#include "Person.h"
+#include "ChocAn.h"
 
 class DataCenter;
 
@@ -15,6 +15,7 @@ public:
 	void connect(DataCenter* dc);
 	void open();
 	void getPersonInput(Person* person);
+	void getServiceRecordInput(ServiceRecord* record);
 	void getIntInput(int* input);
 	void displayString(std::string displayStr);
 private:

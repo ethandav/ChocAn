@@ -16,3 +16,14 @@ struct Person
 	int			number;
 };
 
+struct ServiceRecord
+{
+	time_t		currTime;
+	std::string	servTime;
+	int			providerNumber;
+	int			memberNumber;
+	int			serviceCode;
+	float		totalFee;
+	std::string comments;
+};
+

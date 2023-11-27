@@ -50,7 +50,7 @@
     <ClInclude Include="Terminal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Person.h">
+    <ClInclude Include="ChocAn.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

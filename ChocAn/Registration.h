@@ -2,7 +2,7 @@
 #include <list>
 #include <string>
 
-#include "Person.h"
+#include "ChocAn.h"
 
 class Registration
 {

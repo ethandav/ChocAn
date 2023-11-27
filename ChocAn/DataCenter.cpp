@@ -140,9 +140,35 @@ void DataCenter::getProviderDirectory()
 	terminal.displayString(filesystem.getProviderDirectory());
 }
 
-bool DataCenter::saveServiceRecord()
+void DataCenter::enterServiceRecord()
 {
-	return false;
+	ServiceRecord*	record			= nullptr;
+	Person*			provider		= nullptr;
+	Person*			member			= nullptr;
+	int				memberNumber	= 0;
+	int				providerNumber	= 0;
+
+	terminal.displayString("Provider Number: ");
+	terminal.getIntInput(&providerNumber);
+	provider = registration.getMember(providerNumber);
+	if (provider == nullptr)
+	{
+		terminal.displayString("Provider Number invalid\n");
+		return;
+	}
+
+	terminal.displayString("Member Number: ");
+	terminal.getIntInput(&memberNumber);
+	member = registration.getMember(memberNumber);
+	if (member == nullptr)
+	{
+		terminal.displayString("Member Number invalid\n");
+		return;
+	}
+
+	record = new ServiceRecord();
+	
+	terminal.getServiceRecordInput(record);
 }
 
 void DataCenter::editPerson(Person* person)

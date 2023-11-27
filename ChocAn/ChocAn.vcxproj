@@ -145,7 +145,7 @@
   <ItemGroup>
     <ClInclude Include="DataCenter.h" />
     <ClInclude Include="Filesystem.h" />
-    <ClInclude Include="Person.h" />
+    <ClInclude Include="ChocAn.h" />
     <ClInclude Include="Registration.h" />
     <ClInclude Include="Reports.h" />
     <ClInclude Include="Terminal.h" />

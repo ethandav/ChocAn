@@ -3,7 +3,7 @@
 #include "Registration.h"
 #include "Filesystem.h"
 #include "Reports.h"
-#include "Person.h"
+#include "ChocAn.h"
 
 class DataCenter
 {
@@ -12,6 +12,8 @@ public:
 	~DataCenter() {};
 
 	void start();
+
+	// Registration
 	void registerMember();
 	void registerProvider();
 	void updateMember();
@@ -19,18 +21,18 @@ public:
 	void removeMember();
 	void removeProvider();
 	void validateMember();
-	void getProviderDirectory();
 
-private:
-	void editPerson(Person* person);
-
-	//Reports
+	// Reports
 	void generateMemberReport();
 	void generateProviderReport();
 	void generateSummaryReport();
 
 	// Filesystem
-	bool saveServiceRecord();
+	void getProviderDirectory();
+	void enterServiceRecord();
+
+private:
+	void editPerson(Person* person);
 
 	Terminal terminal;
 	Registration registration;
