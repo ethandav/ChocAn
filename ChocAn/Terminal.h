@@ -1,9 +1,10 @@
 #pragma once
 #include <iostream>
-#include <string>
-#include "Registration.h" // For Person struct
+#include <limits>
 
-using namespace std;
+#include "ChocAn.h"
+
+class DataCenter;
 
 class Terminal
 {
@@ -11,17 +12,16 @@ public:
 	Terminal() {};
 	~Terminal() {};
 
+	void connect(DataCenter* dc);
 	void open();
+	void getPersonInput(Person* person);
+	void getServiceRecordInput(ServiceRecord* record);
+	void getIntInput(int* input);
+	void displayString(std::string displayStr);
 private:
 	bool running;
+	DataCenter* dc;
 
 	void displayMenu();
-	void getInputInt(int* code);
-	void getInputString(string* input);
-	void enterPatientName();
-	void enterMemberCardData();
-	void enterServiceCode();
-	void displayPatient();
-	
-
+	void flushInput();
 };

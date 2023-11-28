@@ -1,83 +1,121 @@
 #include "Terminal.h"
+#include "DataCenter.h"
 
+void Terminal::connect(DataCenter* dc)
+{
+	this->dc = dc;
+	if (this->dc == nullptr)
+	{
+		throw(std::runtime_error("Connection to Terminal failed."));
+	}
+}
 
+void Terminal::open()
+{
+	int input = 0;
+	running = true;
 
-// Runs the terminal and processes the information being input by the user
-void Terminal::open() {
-	int code = 0;
-	string memberName = "";
-	string cardNumber = "";
-	string input = "";
-	bool running = true;
-
-	displayMenu();
-
-	while (running) {
-		getInputInt(&code);
-		switch (code) {
-            case 1: {
-                enterPatientName();
-                break;
-            }
-            case 2: {
-                enterMemberCardData();
-                break;
-            }
-            case 3: {
-                enterServiceCode();
-                break;
-            }
-            case 8: {
-                running = false;
-                cout << "Exiting ChocAn Terminal...\n";
-                break;
-            }
-            default: {
-                cout << "Invalid option. Please try again.\n";
-                break;
+	while (running)
+	{
+		displayMenu();
+		getIntInput(&input);
+		switch (input)
+		{
+		case 1:
+			dc->registerMember();
+			break;
+		case 2:
+			dc->registerProvider();
+			break;
+		case 3:
+			dc->updateMember();
+			break;
+		case 4:
+			dc->updateProvider();
+			break;
+		case 5:
+			dc->removeMember();
+			break;
+		case 6:
+			dc->removeProvider();
+			break;
+		case 7:
+			dc->getProviderDirectory();
+			break;
+		case 8:
+			dc->enterServiceRecord();
+			break;
+		case 9:
+			running = false;
+			break;
+		default:
+			break;
 		}
 	}
 }
 
-// Displays the terminal menu and prompts the user to enter
-void Terminal::displayMenu() {
-	cout << "ChocAn Terminal\n";
-    cout << "1. Enter Name of Patient\n";
-    cout << "2. Enter Member Card Data\n";
-    cout << "3. Enter Service Code\n";
-    cout << "8. Exit\n";
-    cout << "Select an option: ";
-
-	//cout << "Welcome to ChocAn! Enter 8 to quit" << endl;
+void Terminal::displayMenu()
+{
+	std::cout << "Welcome to ChocAn! Enter 9 to quit\n";
+	std::cout << "1 - Register Member\n";
+	std::cout << "2 - Register Provider\n";
+	std::cout << "3 - Update Member\n";
+	std::cout << "4 - Update Provider\n";
+	std::cout << "5 - Remove Member\n";
+	std::cout << "6 - Remove Provider\n";
+	std::cout << "7 - Show Provider Directory\n";
+	std::cout << "8 - Enter Service Record" << std::endl;
+	std::cout << "Enter your choice: ";
 }
 
-// Gets code input from the user
-void Terminal::getInputInt(int* code) {
-	cin >> *code;
+void Terminal::getIntInput(int* input)
+{
+	std::cin >> *input;
+	flushInput();
 }
 
-// Prompts the user to enter the name of the patient
-void Terminal::enterPatientName() {
-    string patient_name;
-    cout << "Enter the name of the patient: ";
-    cin.ignore(); // Ignore newline character
-    getline(cin, patient_name);
-    // Process or store 'patient_name' as needed
+void Terminal::getPersonInput(Person* person)
+{
+	std::cout << "Name: ";
+	std::cin >> person->name;
+	flushInput();
+	std::cout << "ID Number: ";
+	std::cin >> person->number;
+	flushInput();
+	std::cout << "Street Address: ";
+	std::cin >> person->address.addr;
+	flushInput();
+	std::cout << "City: ";
+	std::cin >> person->address.city;
+	flushInput();
+	std::cout << "State: ";
+	std::cin >> person->address.state;
+	flushInput();
+	std::cout << "Zip: ";
+	std::cin >> person->address.zip;
+	flushInput();
 }
 
-// Prompts the user to enter a members card number
-void Terminal::enterMemberCardData() {
-    int card_number;
-    std::cout << "Enter the Member Card number: ";
-    getInputInt(&card_number);
-    // Validate 'card_number' against ChocAn system data or process further
+void Terminal::getServiceRecordInput(ServiceRecord* record)
+{
+	std::cout << "Date of Service (MM-DD-YYYY): ";
+	std::getline(std::cin, record->servTime);
+	std::cout << "Service Code: ";
+	std::cin >> record->serviceCode;
+	flushInput();
+	std::cout << "Total Fee: ";
+	std::cin >> record->totalFee;
+	flushInput();
+	std::cout << "Additional Comments: ";
+	std::getline(std::cin, record->comments);
 }
 
-// Prompts the user to enter a service code from the menu
-void Terminal::enterServiceCode() {
-    int service_code;
-    std::cout << "Enter the service code: ";
-    getInputInt(&service_code);
-    // Validate 'service_code' and process the service or store it
+void Terminal::displayString(std::string displayStr)
+{
+	std::cout << displayStr;
 }
 
+void Terminal::flushInput()
+{
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+}
