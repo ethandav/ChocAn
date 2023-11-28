@@ -16,3 +16,7 @@
 *.idb
 *.pdb
 *.exe
+*.sqlite
+x64
+ChocAn/x64
+ChocAn/filesystem

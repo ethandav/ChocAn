@@ -1,11 +1,13 @@
-#include <list>
-#include <string>
+//#include <list>
+//#include <string>
 #include "DataCenter.h"
 
 int main()
 {
-	// DataCenter dc;
-	// dc.start();
+	DataCenter dc;
+	dc.start();
+
+	/*
 	Reports reports;
 	std::list<Member> members;
 
@@ -22,6 +24,6 @@ int main()
 	members.push_back(mai);
 
 	reports.generateMemberReports(members);
-
+	*/
 	return 0;
 }

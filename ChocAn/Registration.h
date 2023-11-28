@@ -2,20 +2,7 @@
 #include <list>
 #include <string>
 
-struct Address
-{
-	std::string addr;
-	std::string city;
-	std::string state;
-	int			zip;
-};
-
-struct Person
-{
-	std::string name;
-	Address		address;
-	int			number;
-};
+#include "ChocAn.h"
 
 struct Member
 {
@@ -33,14 +20,19 @@ class Registration
 {
 public:
 	Registration() {};
-	~Registration() {};
-	void registerMember(Person* member);
-	void registerProvider(Person* provider);
-	void removeMember(int cardNumber);
-	void removeProvider(int providerNumber);
+	~Registration();
+	bool registerMember(Person* member);
+	bool registerProvider(Person* provider);
+	bool removeMember(const int memberNumber);
+	bool removeProvider(const int providerNumber);
 	bool validateMemberCard(int memberNumber);
+	Person* getMember(int memberNumber);
+	Person* getProvider(int providerNumber);
 
 private:
-	std::list<Member> members;
-	std::list<Provider> providers;
+	std::list<Person*> members;
+	std::list<Person*> providers;
+	
+	Person* findByNumber(const std::list<Person*>& list, int number);
+	bool editPerson(Person* person);
 };

@@ -110,6 +110,9 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /E /I /Y "$(ProjectDir)filesystem" "$(TargetDir)filesystem"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -127,6 +130,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy /E /I /Y "$(ProjectDir)filesystem" "$(TargetDir)filesystem"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataCenter.cpp" />
@@ -139,9 +145,13 @@
   <ItemGroup>
     <ClInclude Include="DataCenter.h" />
     <ClInclude Include="Filesystem.h" />
+    <ClInclude Include="ChocAn.h" />
     <ClInclude Include="Registration.h" />
     <ClInclude Include="Reports.h" />
     <ClInclude Include="Terminal.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="providerDirectory.csv" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

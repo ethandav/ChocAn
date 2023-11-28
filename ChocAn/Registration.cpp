@@ -1,30 +1,99 @@
 #include "Registration.h"
+#include <iostream>
 
-void Registration::registerMember(Person* member)
+Registration::~Registration()
 {
-	// members.push_back(member);
+	while (!members.empty())
+	{
+		while (!members.front()->services.empty())
+		{
+			delete members.front()->services.front();
+			members.front()->services.pop_front();
+		}
+		delete members.front();
+		members.pop_front();
+	}
+
+	while (!providers.empty())
+	{
+		delete providers.front();
+		providers.pop_front();
+	}
 }
 
-void Registration::registerProvider(Person* provider)
+bool Registration::registerMember(Person* member)
 {
-	// providers.push_back(provider);
+	if(member != nullptr){
+		members.push_back(member);
+		return true;
+	}
+	return false;
 }
 
-void Registration::removeMember(int cardNumber)
+bool Registration::registerProvider(Person* provider)
 {
-	// Remove from member list by number
+	if(provider != nullptr){
+		providers.push_back(provider);
+		return true;
+	}
+	return false;
 }
 
-void Registration::removeProvider(int providerNumber)
+bool Registration::removeMember(const int memberNumber)
 {
-	// Remove from provider list by number
+	Person* target = findByNumber(members, memberNumber);
+	if (target != nullptr)
+	{
+		members.remove(target);
+		delete target;
+		return true;
+	}
+	return false;
+}
+
+bool Registration::removeProvider(const int providerNumber)
+{
+	Person* target = findByNumber(members, providerNumber);
+	if (target != nullptr)
+	{
+		members.remove(target);
+		delete target;
+		return true;
+	}
+	return false;
 }
 
 bool Registration::validateMemberCard(int memberNumber)
 {
-	bool valid = false;
+	if (findByNumber(members, memberNumber) != nullptr)
+		return true;
+	else
+		return false;
+}
 
-	// Check member list for member number
+Person* Registration::getMember(int memberNumber)
+{
+	return findByNumber(members, memberNumber);
+}
 
-	return valid;
+Person* Registration::getProvider(int providerNumber)
+{
+	return findByNumber(providers, providerNumber);
+}
+
+Person* Registration::findByNumber(const std::list<Person*>& list, int number)
+{
+	for (const auto& ptr : list)
+	{
+		if (ptr->number == number)
+		{
+			return ptr;
+		}
+	}
+	return nullptr;
+}
+
+bool Registration::editPerson(Person* person)
+{
+	return false;
 }
