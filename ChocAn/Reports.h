@@ -2,27 +2,30 @@
 #include <string>
 #include <list>
 #include <iostream>
+#include "ChocAn.h"
 #include "Registration.h"
 
 /* Header file to generate Member and Provider reports */
-
 class Reports
 {
 public:
-
 	Reports() {};
 	~Reports() {};
-	// weekly reports
+	// Weekly reports
 	bool generateMemberReports(const std::list<Member>& members);	
 	bool generateProviderReports(const std::list<Provider>& providers);	
-	// manual reports
-	bool generateMemberReportById(const std::list<Member>& members, const std::string& memberId);
-	bool generateProviderReportById(const std::list<Provider>& providers, const std::string& providerId);
-
+	// Manual reports
+	bool generateMemberReportByID(const std::list<Member>& members, int memberID);
+	bool generateProviderReportByID(const std::list<Provider>& providers, int providerID);
 
 private:
-	// helper functions for generateReportById
-	Member * findMember(const std::string& id);
-	Provider * findProvider(const std::string& id);
+	// Helper functions
+	//Member * findMember(const std::string& id);
+	//Provider * findProvider(const std::string& id);
+
+	//bool LastWeekRange(const std::string & serviceDate);	// Weekly report range
+	//std::string formatMemberDetails(const Person& member);			
+	//std::string formatProviderDetails(const Person& provider);
+	//std::string formatServiceRecord(const ServiceRecord& record);		
 
 };
