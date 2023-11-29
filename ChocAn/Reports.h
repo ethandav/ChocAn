@@ -10,7 +10,7 @@ public:
 	Reports() {};
 	~Reports() {};
 	// Weekly reports
-	bool generateMemberReports(const std::list<Person*>& members);	
+	bool generateMemberReports(const std::list<Person*>& members, Registration& registration, Filesystem& filesystem);	
 	bool generateProviderReports(const std::list<Person*>& providers);	
 	// Manual reports
 	bool generateMemberReportByID(const std::list<Person*>& members, int memberID);
@@ -19,12 +19,12 @@ public:
 private:
 	// Helper functions
 	//Member * findMember(const std::string& id);
-	//Provider * findProvider(const std::string& id);
-
 	//bool LastWeekRange(const std::string & serviceDate);	// Weekly report range
 
 	std::string formatMemberDetails(const Person& member);			
 	std::string formatProviderDetails(const Person& provider);
-	std::string formatServiceRecord(const ServiceRecord& record);		
+	std::string formatServiceRecord(const ServiceRecord& record);	
+		
+	std::string formatServiceShort(const std::string dateOfService, const std::string providerName, const std::string serviceName); // for member report
 
 };

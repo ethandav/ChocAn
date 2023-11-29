@@ -4,23 +4,40 @@
 #include <ctime>
 
 /* Reports class member function implementation */
-bool Reports::generateMemberReports(const std::list<Person*>& members) {
+bool Reports::generateMemberReports(const std::list<Person*>& members, Registration& registration, Filesystem& filesystem) 
+{
     std::stringstream report;
     if (!members.empty())
     {
     	for (auto memberPtr : members) {
-            
+            std::string memberReport = formatMemberDetails(*memberPtr);
+            report << memberReport << std::endl;
+
+            for (auto servicePtr : memberPtr->services) {
+                if (servicePtr) {
+                    // date of service (servTime)
+                    const std::string dateOfService = servicePtr->servTime;
+
+                    // Provider name
+                    Person* provider = registration.getProvider(servicePtr->providerNumber);
+                    const std::string providerName = provider->name;
+
+                    // Service name
+                    const std::string serviceName = filesystem.getServiceNameByCode(servicePtr->serviceCode);
+
+                    std::string serviceReport = formatServiceShort(dateOfService, providerName, serviceName);
+                    report << serviceReport << std::endl;
+                }
+            }
         }
-        /*for (auto member : members) {
-            //cout << members.person.name << endl;
-        }*/
         return true;
     }
     else
         return false;
 }
 
-bool Reports::generateProviderReports(const std::list<Person*>& providers) {
+bool Reports::generateProviderReports(const std::list<Person*>& providers)
+{
     if (!providers.empty())
     {
         /*for (auto provider : providers) {
@@ -65,6 +82,14 @@ std::string Reports::formatProviderDetails(const Person& provider) {
 		<< " " << provider.address.zip << "\n";
 	return ss.str();
 }
+std::string Reports::formatServiceShort(const std::string dateOfService, const std::string providerName, const std::string serviceName) {
+	std::stringstream ss;
+	ss << "Service Date: " << dateOfService << "\n" 
+		<< "Provider Number: " << providerName << "\n"
+		<< "Member Number: " << serviceName << "\n";
+	return ss.str();
+}
+
 std::string Reports::formatServiceRecord(const ServiceRecord& record) {
 	std::stringstream ss;
 	ss << "Service Date: " << record.servTime << "\n"		// (MM-DD-YYYY)
@@ -74,5 +99,13 @@ std::string Reports::formatServiceRecord(const ServiceRecord& record) {
 		<< "Fee: $" << std::fixed << std::setprecision(2) << record.totalFee << "\n"
 		<< "Comments: " << record.comments << "\n";
 	return ss.str();
+}
+
+const std::string findProvider(const std::list<Person*>& members, int id)
+{
+    for (auto memberPtr : members) { 
+        if (memberPtr->number == id) return memberPtr->name;
+    }
+    return "";
 }
 
