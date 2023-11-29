@@ -4,13 +4,8 @@
 using namespace std;
 
 /* Reports class member function implementation */
-
-Reports::Reports() {	
-}
-Reports::~Reports() {
-}
 bool Reports::generateMemberReports(const std::list<Member>& members) {
-    if(members)
+    if(!members.empty())
     {
         for (auto member : members) {
             cout << member.person.name << endl;
@@ -22,7 +17,7 @@ bool Reports::generateMemberReports(const std::list<Member>& members) {
 }
 
 bool Reports::generateProviderReports(const std::list<Provider>& providers) {
-    if(providers)
+    if(!providers.empty())
     {
         for (auto provider : providers) {
             cout << provider.person.name << endl;
@@ -34,13 +29,13 @@ bool Reports::generateProviderReports(const std::list<Provider>& providers) {
 }
 
 bool Reports::generateMemberReportByID(const std::list<Member>& members, int memberID) {
-    if(!members)
+    if(members.empty())
         return false;
     return true;
 }
 
 bool Reports::generateProviderReportByID(const std::list<Provider>& providers, int providerID) {
-    if(!providers)
+    if(providers.empty())
         return false;
     return true;
 }
