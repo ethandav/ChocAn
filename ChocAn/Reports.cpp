@@ -23,7 +23,7 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
                     const std::string providerName = provider->name;
 
                     // Service name
-                    const std::string serviceName = filesystem.getServiceNameByCode(servicePtr->serviceCode);
+                    const std::string serviceName = filesystem.getServiceByCode(servicePtr->serviceCode)->name;
 
                     std::string serviceReport = formatServiceShort(dateOfService, providerName, serviceName);
                     report << serviceReport << std::endl;

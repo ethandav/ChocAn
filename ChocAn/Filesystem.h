@@ -13,7 +13,7 @@ public:
 	~Filesystem() {};
 
 	std::string getProviderDirectory();
-	std::string getServiceNameByCode(int lookupCode);
+	Service* getServiceByCode(int lookupCode);
 	bool saveServiceRecord(ServiceRecord* record);
 
 private:

@@ -252,6 +252,7 @@ void DataCenter::enterServiceRecord()
 	record->currTime = ss.str();
 	
 	terminal.getServiceRecordInput(record);
+	filesystem.getServiceByCode(record->serviceCode);
 	if (filesystem.saveServiceRecord(record))
 	{
 		terminal.displayString("Service Record Saved\n");

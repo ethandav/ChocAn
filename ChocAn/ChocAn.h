@@ -29,3 +29,9 @@ struct Person
 	std::list<ServiceRecord*>	services;
 };
 
+struct Service
+{
+	int code;
+	std::string name;
+	int fee;
+};
