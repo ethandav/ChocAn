@@ -17,6 +17,10 @@
 *.pdb
 *.exe
 *.sqlite
+*.o
+*.swp
+*.swo
 x64
 ChocAn/x64
 ChocAn/filesystem
+bin/
