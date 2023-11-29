@@ -1,14 +1,12 @@
-#include <sstream>
+#include "Reports.h"
 #include <iomanip>
 #include <chrono>
 #include <ctime>
-#include "Reports.h"
-//using namespace std;
 
 /* Reports class member function implementation */
 bool Reports::generateMemberReports(const std::list<Person*>& members) {
     std::stringstream report;
-    if(!members.empty())
+    if (!members.empty())
     {
     	for (auto memberPtr : members) {
             
@@ -23,7 +21,7 @@ bool Reports::generateMemberReports(const std::list<Person*>& members) {
 }
 
 bool Reports::generateProviderReports(const std::list<Person*>& providers) {
-    if(!providers.empty())
+    if (!providers.empty())
     {
         /*for (auto provider : providers) {
             //cout << providers.person.name << endl;
@@ -35,13 +33,13 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers) {
 }
 
 bool Reports::generateMemberReportByID(const std::list<Person*>& members, int memberID) {
-    if(members.empty())
+    if (members.empty())
         return false;
     return true;
 }
 
 bool Reports::generateProviderReportByID(const std::list<Person*>& providers, int providerID) {
-    if(providers.empty())
+    if (providers.empty())
         return false;
     return true;
 }

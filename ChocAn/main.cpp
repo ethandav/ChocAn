@@ -1,5 +1,3 @@
-//#include <list>
-//#include <string>
 #include "DataCenter.h"
 
 int main()
