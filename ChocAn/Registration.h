@@ -4,18 +4,6 @@
 
 #include "ChocAn.h"
 
-struct Member
-{
-	Person person;
-	// List of services taken
-};
-
-struct Provider 
-{
-	Person person;
-	// List of services given
-};
-
 class Registration
 {
 public:

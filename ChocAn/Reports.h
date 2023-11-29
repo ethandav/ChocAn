@@ -12,11 +12,11 @@ public:
 	Reports() {};
 	~Reports() {};
 	// Weekly reports
-	bool generateMemberReports(const std::list<Member>& members);	
-	bool generateProviderReports(const std::list<Provider>& providers);	
+	bool generateMemberReports(const std::list<Person*>& members);	
+	bool generateProviderReports(const std::list<Person*>& providers);	
 	// Manual reports
-	bool generateMemberReportByID(const std::list<Member>& members, int memberID);
-	bool generateProviderReportByID(const std::list<Provider>& providers, int providerID);
+	bool generateMemberReportByID(const std::list<Person*>& members, int memberID);
+	bool generateProviderReportByID(const std::list<Person*>& providers, int providerID);
 
 private:
 	// Helper functions

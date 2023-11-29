@@ -4,37 +4,38 @@
 using namespace std;
 
 /* Reports class member function implementation */
-bool Reports::generateMemberReports(const std::list<Member>& members) {
+bool Reports::generateMemberReports(const std::list<Person*>& members) {
     if(!members.empty())
     {
-        for (auto member : members) {
-            cout << member.person.name << endl;
-        }
+    	for (auto memberPtr : members) {}
+        /*for (auto member : members) {
+            //cout << members.person.name << endl;
+        }*/
         return true;
     }
     else
         return false;
 }
 
-bool Reports::generateProviderReports(const std::list<Provider>& providers) {
+bool Reports::generateProviderReports(const std::list<Person*>& providers) {
     if(!providers.empty())
     {
-        for (auto provider : providers) {
-            cout << provider.person.name << endl;
-        }
+        /*for (auto provider : providers) {
+            //cout << providers.person.name << endl;
+        }*/
         return true;
     }
     else
         return false;
 }
 
-bool Reports::generateMemberReportByID(const std::list<Member>& members, int memberID) {
+bool Reports::generateMemberReportByID(const std::list<Person*>& members, int memberID) {
     if(members.empty())
         return false;
     return true;
 }
 
-bool Reports::generateProviderReportByID(const std::list<Provider>& providers, int providerID) {
+bool Reports::generateProviderReportByID(const std::list<Person*>& providers, int providerID) {
     if(providers.empty())
         return false;
     return true;
