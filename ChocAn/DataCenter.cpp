@@ -216,6 +216,7 @@ void DataCenter::enterServiceRecord()
 	int					memberNumber	= 0;
 	int					providerNumber	= 0;
 	std::stringstream	ss;
+	Service				service;
 
 	terminal.displayString("Provider Number: ");
 	terminal.getIntInput(&providerNumber);
@@ -252,7 +253,7 @@ void DataCenter::enterServiceRecord()
 	record->currTime = ss.str();
 	
 	terminal.getServiceRecordInput(record);
-	filesystem.getServiceByCode(record->serviceCode);
+	filesystem.getServiceByCode(&service, record->serviceCode);
 	if (filesystem.saveServiceRecord(record))
 	{
 		terminal.displayString("Service Record Saved\n");

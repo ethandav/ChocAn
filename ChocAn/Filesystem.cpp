@@ -18,15 +18,14 @@ std::string Filesystem::getProviderDirectory()
 	return parseContents();
 }
 
-Service* Filesystem::getServiceByCode(int lookupCode) 
+bool Filesystem::getServiceByCode(Service* service, int lookupCode) 
 {
 	std::ifstream file;
-	Service* service = nullptr;
 	int currLine = 0;
 
 	if (!openFile(file, "./filesystem/providerDirectory.csv"))
 	{
-		return service;
+		return false;
 	}
 
 	fileContents.clear(); 
@@ -34,7 +33,7 @@ Service* Filesystem::getServiceByCode(int lookupCode)
 	if (!readFile(file))
 	{
 		closeFile(file);
-		return service;
+		return false;
 	}
 
 	for (const auto& line: fileContents)
@@ -62,7 +61,7 @@ Service* Filesystem::getServiceByCode(int lookupCode)
 				service->code = code;
 				service->name = serviceName;
 				service->fee = std::stof(serviceFee);
-				return service;
+				return true;
 			}
 		}
 		catch (const std::exception& e) 
@@ -72,7 +71,7 @@ Service* Filesystem::getServiceByCode(int lookupCode)
 	}
 
 	closeFile(file);
-	return service;
+	return false;
 }
 
 bool Filesystem::saveServiceRecord(ServiceRecord* record)
