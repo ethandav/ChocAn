@@ -1,9 +1,7 @@
 #pragma once
-#include <string>
-#include <list>
-#include <iostream>
 #include "ChocAn.h"
 #include "Registration.h"
+#include "Filesystem.h"
 
 /* Header file to generate Member and Provider reports */
 class Reports
@@ -24,8 +22,9 @@ private:
 	//Provider * findProvider(const std::string& id);
 
 	//bool LastWeekRange(const std::string & serviceDate);	// Weekly report range
-	//std::string formatMemberDetails(const Person& member);			
-	//std::string formatProviderDetails(const Person& provider);
-	//std::string formatServiceRecord(const ServiceRecord& record);		
+
+	std::string formatMemberDetails(const Person& member);			
+	std::string formatProviderDetails(const Person& provider);
+	std::string formatServiceRecord(const ServiceRecord& record);		
 
 };

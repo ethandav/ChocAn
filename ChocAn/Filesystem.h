@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
 #include <fstream>
-#include <string>
+//#include <string>
 #include <vector>
+#include <sstream>
 
 #include "ChocAn.h"
 
@@ -13,6 +14,7 @@ public:
 	~Filesystem() {};
 
 	std::string getProviderDirectory();
+	std::string getServiceNameByCode(int lookupCode);
 	bool saveServiceRecord(ServiceRecord* record);
 
 private:

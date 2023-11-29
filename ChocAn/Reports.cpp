@@ -1,13 +1,18 @@
-//#include <sstream>
-//#include <iomanip>
+#include <sstream>
+#include <iomanip>
+#include <chrono>
+#include <ctime>
 #include "Reports.h"
-using namespace std;
+//using namespace std;
 
 /* Reports class member function implementation */
 bool Reports::generateMemberReports(const std::list<Person*>& members) {
+    std::stringstream report;
     if(!members.empty())
     {
-    	for (auto memberPtr : members) {}
+    	for (auto memberPtr : members) {
+            
+        }
         /*for (auto member : members) {
             //cout << members.person.name << endl;
         }*/
@@ -41,7 +46,7 @@ bool Reports::generateProviderReportByID(const std::list<Person*>& providers, in
     return true;
 }
 /* bool Reports::LastWeekRange(const std::string & serviceDate) {
-}
+} */
 
 std::string Reports::formatMemberDetails(const Person& member) {
 	std::stringstream ss;
@@ -72,4 +77,4 @@ std::string Reports::formatServiceRecord(const ServiceRecord& record) {
 		<< "Comments: " << record.comments << "\n";
 	return ss.str();
 }
-*/
+
