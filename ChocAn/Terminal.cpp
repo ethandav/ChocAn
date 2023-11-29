@@ -121,3 +121,48 @@ void Terminal::flushInput()
 {
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
+
+//void Terminal::updatePersonData(Registration& registration, Person* person) 
+//{
+//    if(!person) 
+//	{
+//        std::cout << "No person selected for update.\n";
+//        return;
+//    }
+//
+//    std::string name, addr, city, state;
+//    int zip, number;
+//
+//    std::cout << "Enter new name: ";
+//    std::getline(std::cin, name);
+//    person->name = name;
+//
+//    std::cout << "Enter new address: ";
+//    std::getline(std::cin, addr);
+//    person->address.addr = addr;
+//
+//    std::cout << "Enter new city: ";
+//    std::getline(std::cin, city);
+//    person->address.city = city;
+//
+//    std::cout << "Enter new state: ";
+//    std::getline(std::cin, state);
+//    person->address.state = state;
+//
+//    std::cout << "Enter new zip code: ";
+//    std::cin >> zip;
+//    std::cin.ignore(); 
+//    person->address.zip = zip;
+//
+//
+//    std::cout << "Enter new number: ";
+//    std::cin >> number;
+//    std::cin.ignore(); 
+//    person->number = number;
+//
+//    if (registration.editPerson(person)) {
+//        std::cout << "Person data updated successfully.\n";
+//    } else {
+//        std::cout << "Failed to update person data.\n";
+//    }
+//}
