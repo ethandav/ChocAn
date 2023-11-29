@@ -201,7 +201,7 @@ void DataCenter::enterServiceRecord()
     localtime_s(&localTime, &currTime);
     ss << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S");
 #else
-    ss << std::put_time(std::localtime(&time), "%Y-%m-%d %H:%M:%S");
+    ss << std::put_time(std::localtime(&currTime), "%Y-%m-%d %H:%M:%S");
 #endif
 
 	record->currTime = ss.str();
