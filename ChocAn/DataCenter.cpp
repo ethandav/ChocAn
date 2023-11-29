@@ -241,7 +241,6 @@ void DataCenter::enterServiceRecord()
 	record->memberNumber = memberNumber;
 
 	currTime = std::chrono::system_clock::to_time_t(now);
-
 #ifdef _WIN32
 	std::tm localTime;
     localtime_s(&localTime, &currTime);
@@ -254,6 +253,9 @@ void DataCenter::enterServiceRecord()
 
 	terminal.getServiceRecordInput(record);
 	validateServiceCode(&service);
+
+	record->serviceCode = service.code;
+	record->totalFee = service.fee;
 
 	if (filesystem.saveServiceRecord(record))
 	{
