@@ -1,7 +1,4 @@
 #pragma once
-#include <list>
-#include <string>
-
 #include "ChocAn.h"
 
 class Registration
@@ -16,6 +13,10 @@ public:
 	bool validateMemberCard(int memberNumber);
 	Person* getMember(int memberNumber);
 	Person* getProvider(int providerNumber);
+
+	// TEMP GETTERS TO GENERATE REPORTS, we can figure out another way later if need be
+	const std::list<Person*>& getMemberList() const;
+	const std::list<Person*>& getProviderList() const;
 
 private:
 	std::list<Person*> members;

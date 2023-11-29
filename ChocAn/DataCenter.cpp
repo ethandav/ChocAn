@@ -25,6 +25,50 @@ void DataCenter::registerMember()
 	}
 }
 
+/* ignore this, this is so I can test - Aaron
+void DataCenter::registerMember() {
+    Person hardcodedMembers[4];
+
+    hardcodedMembers[0].name = "John Doe";
+    hardcodedMembers[0].number = 123456789;
+    hardcodedMembers[0].address.addr = "123 Main St";
+    hardcodedMembers[0].address.city = "Anytown";
+    hardcodedMembers[0].address.state = "NY";
+    hardcodedMembers[0].address.zip = 12345;
+
+    hardcodedMembers[1].name = "Jane Smith";
+    hardcodedMembers[1].number = 987654321;
+    hardcodedMembers[1].address.addr = "456 Elm St";
+    hardcodedMembers[1].address.city = "Othertown";
+    hardcodedMembers[1].address.state = "CA";
+    hardcodedMembers[1].address.zip = 54321;
+
+    hardcodedMembers[2].name = "Alice Johnson";
+    hardcodedMembers[2].number = 111222333;
+    hardcodedMembers[2].address.addr = "789 Oak Rd";
+    hardcodedMembers[2].address.city = "Sometown";
+    hardcodedMembers[2].address.state = "TX";
+    hardcodedMembers[2].address.zip = 67890;
+
+    hardcodedMembers[3].name = "Bob Brown";
+    hardcodedMembers[3].number = 444555666;
+    hardcodedMembers[3].address.addr = "321 Pine Ln";
+    hardcodedMembers[3].address.city = "Yettown";
+    hardcodedMembers[3].address.state = "FL";
+    hardcodedMembers[3].address.zip = 24680;
+
+    for (int i = 0; i < 4; ++i) {
+        Person* newMember = new Person(hardcodedMembers[i]);
+
+        if (registration.registerMember(newMember)) {
+            terminal.displayString("Member successfully Added!\n");
+        } else {
+            delete newMember;
+        }
+    }
+}
+*/
+
 void DataCenter::registerProvider()
 {
 	Person* newProvider = new Person();
@@ -35,6 +79,8 @@ void DataCenter::registerProvider()
 		terminal.displayString("Provider succesfully Added!\n");
 	}
 }
+
+
 
 void DataCenter::updateMember()
 {
@@ -121,10 +167,9 @@ void DataCenter::validateMember()
 //Reports
 void DataCenter::generateMemberReport()
 {
-	//Person* person = new Person();
-	//members referes to std::list<Member>& members
-	/*
-	if(reports.generateMemberReports(members))
+	// need registration and filesystem to get info when writing service record (provider name and service name)
+	const std::list<Person*>& members = registration.getMemberList();
+	if(reports.generateMemberReports(members, registration, filesystem))
 	{
 		terminal.displayString("Member Report Generation Success\n");
 	}
@@ -132,7 +177,7 @@ void DataCenter::generateMemberReport()
 	{
 		terminal.displayString("Member Report Generation Failed\n");
 	}
-	*/
+	
 }
 
 void DataCenter::generateProviderReport()

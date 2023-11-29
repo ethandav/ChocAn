@@ -18,6 +18,55 @@ std::string Filesystem::getProviderDirectory()
 	return parseContents();
 }
 
+std::string Filesystem::getServiceNameByCode(int lookupCode) 
+{
+	std::ifstream file;
+	if (!openFile(file, "./filesystem/providerDirectory.csv"))
+	{
+		return ""; 
+	}
+
+	fileContents.clear(); 
+
+	if (!readFile(file))
+	{
+		closeFile(file);
+		return "";
+	}
+
+	for (const auto& line: fileContents)
+	{
+		std::stringstream ss(line);
+		std::string serviceCode, serviceName, serviceFee;
+		int code = 0;
+
+		std::getline(ss, serviceCode, ',');
+		std::getline(ss, serviceName, ',');
+		std::getline(ss, serviceFee, ',');
+
+		if (serviceCode == "ServiceCode" || serviceName == "ServiceName" || serviceFee == "ServiceFee")
+		{
+			continue; // Skip header of .csv file
+		}
+		try
+		{
+			code = std::stoi(serviceCode);
+			if (code == lookupCode) 
+			{
+				closeFile(file);
+				return serviceName;
+			}
+		}
+		catch (const std::exception& e) 
+		{
+			continue;	// Skip invalid non-matching service codes
+		}
+	}
+
+	closeFile(file);
+	return "";
+}
+
 bool Filesystem::saveServiceRecord(ServiceRecord* record)
 {
 	std::string fn = "./filesystem/Service_" + std::to_string(record->serviceCode) + "_" + std::to_string(record->memberNumber);

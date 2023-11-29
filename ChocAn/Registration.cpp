@@ -97,3 +97,13 @@ bool Registration::editPerson(Person* person)
 {
 	return false;
 }
+
+// Temp  Getters for Reports Class
+const std::list<Person*>& Registration::getMemberList() const
+{
+	return members;
+}
+const std::list<Person*>& Registration::getProviderList() const
+{
+	return providers;
+}
