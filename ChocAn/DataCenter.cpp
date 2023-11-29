@@ -251,9 +251,10 @@ void DataCenter::enterServiceRecord()
 #endif
 
 	record->currTime = ss.str();
-	
+
 	terminal.getServiceRecordInput(record);
-	filesystem.getServiceByCode(&service, record->serviceCode);
+	validateServiceCode(&service);
+
 	if (filesystem.saveServiceRecord(record))
 	{
 		terminal.displayString("Service Record Saved\n");
@@ -264,6 +265,28 @@ void DataCenter::enterServiceRecord()
 	{
 		terminal.displayString("Error creating service record.\n");
 	}
+}
+
+void DataCenter::validateServiceCode(Service* service)
+{
+	int serviceCode;
+
+	do
+	{
+		do
+		{
+			terminal.displayString("Service Code: ");
+			terminal.getIntInput(&serviceCode);
+
+		} while (!filesystem.getServiceByCode(service, serviceCode));
+
+		std::string display = (
+			"Service: " + service->name + "\n" +
+			"Fee: " + std::to_string(service->fee) + "\n" +
+			"Is this correct (y/n): "
+			);
+		terminal.displayString(display);
+	} while (!terminal.confirm());
 }
 
 void DataCenter::editPerson(Person* person)

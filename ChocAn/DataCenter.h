@@ -39,6 +39,7 @@ public:
 
 private:
 	void editPerson(Person* person);
+	void validateServiceCode(Service* service);
 
 	Terminal terminal;
 	Registration registration;

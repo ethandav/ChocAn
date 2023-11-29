@@ -76,6 +76,38 @@ void Terminal::getIntInput(int* input)
 	flushInput();
 }
 
+void Terminal::getCharInput(char* input)
+{
+	std::cin >> *input;
+	flushInput();
+}
+
+bool Terminal::confirm()
+{
+	bool valid = false;
+	while(!valid)
+	{
+		char confirm;
+		while (true)
+		{
+			getCharInput(&confirm);
+			switch (std::tolower(confirm))
+			{
+			case 'y':
+				return true;
+				break;
+			case 'n':
+				return false;
+				break;
+			default:
+				displayString("Invalid input (y or n): ");
+				break;
+			}
+		}
+
+	}
+}
+
 void Terminal::getPersonInput(Person* person)
 {
 	std::cout << "Name: ";
@@ -102,12 +134,6 @@ void Terminal::getServiceRecordInput(ServiceRecord* record)
 {
 	std::cout << "Date of Service (MM-DD-YYYY): ";
 	std::getline(std::cin, record->servTime);
-	std::cout << "Service Code: ";
-	std::cin >> record->serviceCode;
-	flushInput();
-	std::cout << "Total Fee: ";
-	std::cin >> record->totalFee;
-	flushInput();
 	std::cout << "Additional Comments: ";
 	std::getline(std::cin, record->comments);
 }
