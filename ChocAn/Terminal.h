@@ -18,6 +18,7 @@ public:
 	void getServiceRecordInput(ServiceRecord* record);
 	void getIntInput(int* input);
 	void displayString(std::string displayStr);
+	void updatePersonData(Registration& registration, Person* person);
 private:
 	bool running;
 	DataCenter* dc;
