@@ -20,7 +20,6 @@ public:
 	void getCharInput(char* input);
 	void displayString(std::string displayStr);
 	bool confirm();
-	//void updatePersonData(Registration& registration, Person* person);
 private:
 	bool running;
 	DataCenter* dc;
