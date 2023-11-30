@@ -120,6 +120,16 @@ Person* Registration::getProvider(int providerNumber)
 	return findByNumber(providers, providerNumber);
 }
 
+// Temp  Getters for Reports Class
+const std::list<Person*>& Registration::getMemberList() const
+{
+	return members;
+}
+const std::list<Person*>& Registration::getProviderList() const
+{
+	return providers;
+}
+
 /// <summary>
 /// Searches a person list for the provided number
 /// </summary>
@@ -138,12 +148,3 @@ Person* Registration::findByNumber(const std::list<Person*>& list, int number)
 	return nullptr;
 }
 
-// Temp  Getters for Reports Class
-const std::list<Person*>& Registration::getMemberList() const
-{
-	return members;
-}
-const std::list<Person*>& Registration::getProviderList() const
-{
-	return providers;
-}
