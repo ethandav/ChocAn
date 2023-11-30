@@ -171,7 +171,7 @@ bool Filesystem::readFile(std::ifstream& fs)
         return false;
     }
 
-    fileContents.clear(); // Clear the contents before reading new data
+    fileContents.clear(); 
 
     while (std::getline(fs, line))
     {
