@@ -87,6 +87,7 @@ void Terminal::clearScreen()
 void Terminal::displayMenu()
 {
 	
+	/*
 	std::cout << "Welcome to ChocAn! Enter 9 to quit\n";
 	std::cout << "1 - Register Member\n";
 	std::cout << "2 - Register Provider\n";
@@ -98,7 +99,7 @@ void Terminal::displayMenu()
 	std::cout << "8 - Enter Service Record" << std::endl;
 	std::cout << "Enter your choice: ";
 	
-	/*
+	
 	// Alternate menu display
 	std::cout << "Welcome to ChocAn! Enter (9) to quit\n";
 	std::cout << "(1) Register Member\t\t (2) Register Provider\n";
@@ -108,7 +109,7 @@ void Terminal::displayMenu()
 	std::cout << "Enter your choice: ";
 	*/
 
-	/*
+	
 	// Alternate Alternate Menu option
     std::cout << "Press any key to return to the main menu...";
     std::cin.get(); 
@@ -139,7 +140,7 @@ void Terminal::displayMenu()
 
     std::cout << "\033[A\033[A\033[A\033[A"; 
     std::cout << "\033[22C"; 
-	*/
+	
 
 }
 
