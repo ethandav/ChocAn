@@ -125,31 +125,23 @@ void Terminal::getCharInput(char* input)
 /// <returns>True on user cofnimration. False if user selects N</returns>
 bool Terminal::confirm()
 {
-	bool valid = false;
-	while(!valid)
+	char confirm;
+	while (true)
 	{
-		char confirm;
-		while (true)
+		getCharInput(&confirm);
+		switch (std::tolower(confirm))
 		{
-			getCharInput(&confirm);
-			switch (std::tolower(confirm))
-			{
-			case 'y':
-				valid = true;
-				return true;
-				break;
-			case 'n':
-				valid = true;
-				return false;
-				break;
-			default:
-				displayString("Invalid input (y or n): ");
-				break;
-			}
+		case 'y':
+			return true;
+			break;
+		case 'n':
+			return false;
+			break;
+		default:
+			displayString("Invalid input (y or n): ");
+			break;
 		}
-
 	}
-	return false; 	// Will not reach
 }
 
 /// <summary>
