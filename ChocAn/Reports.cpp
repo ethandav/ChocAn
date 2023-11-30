@@ -101,7 +101,7 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
         return false;
 }
 
-bool Reports::generateMemberReportByID(const std::list<Person*>& members, int memberID) {
+/*bool Reports::generateMemberReportByID(const std::list<Person*>& members, int memberID) {
     if (members.empty())
         return false;
     return true;
@@ -112,7 +112,8 @@ bool Reports::generateProviderReportByID(const std::list<Person*>& providers, in
         return false;
 
     return true;
-}
+} */
+
 /* bool Reports::LastWeekRange(const std::string & serviceDate) {
 } */
 // Member detail format
