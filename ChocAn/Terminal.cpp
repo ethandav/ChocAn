@@ -81,6 +81,14 @@ void Terminal::displayMenu()
 	std::cout << "7 - Show Provider Directory\n";
 	std::cout << "8 - Enter Service Record" << std::endl;
 	std::cout << "Enter your choice: ";
+
+	/* Alternate menu display
+	std::cout << "Welcome to ChocAn! Enter (9) to quit\n";
+	std::cout << "(1) Register Member\t\t (2) Register Provider\n";
+	std::cout << "(3) Update Member\t\t (4) Update Provider\n";
+	std::cout << "(5) Remove Member\t\t (6) Remove Provider\n";
+	std::cout << "(7) Show Provider Directory\t (8) Enter Service Record\n";
+	std::cout << "Enter your choice: ";*/
 }
 
 /// <summary>
