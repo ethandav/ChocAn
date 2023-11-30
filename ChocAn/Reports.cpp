@@ -98,7 +98,7 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
                 EFT << "Provider Number: " << providerPtr->number << "\n";
                 EFT << "Amount to be Transferred: " << totalFee << "\n";
 
-                std::string filenameEFT = "EFT_" + providerPtr->name + ".txt";
+                std::string filenameEFT = "EFT_" + providerPtr->name + "_" + currentDate + ".txt";
                 if (!filesystem.saveReportToFile("EFT", filenameEFT, EFT.str()))
                 {
                     return false;
@@ -115,6 +115,7 @@ bool Reports::generateSummaryReport(const std::list<Person*>& providers, Filesys
     std::stringstream report;
     if (!providers.empty())
     {
+        std::string currentDate = getCurrentDate();
         int totalProviders = 0;
         int totalConsultations = 0;
         float overallFees = 0.0;
@@ -147,8 +148,8 @@ bool Reports::generateSummaryReport(const std::list<Person*>& providers, Filesys
         report << "Overall Combined Fees: " << std::fixed << std::setprecision(2) << overallFees << "\n";
         report << "________________________________" << "\n";
 
-        std::string filename = "Manager_Summary.txt";
-        return filesystem.saveReportToFile("Summary", filename, report.str());
+        std::string filename = "Manager_Summary_" + currentDate + ".txt";
+        return filesystem.saveReportToFile("weekly", filename, report.str());
     }
     return false;
 }
