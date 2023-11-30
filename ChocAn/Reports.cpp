@@ -11,6 +11,8 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
     if (!members.empty())
     {
     	for (auto memberPtr : members) {
+            if (!memberPtr) continue;
+
             std::string memberReport = formatMemberDetails(*memberPtr);
             Service service;
 
@@ -43,12 +45,14 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
 }
 
 // bool Reports::generateProviderReports(const std::list<Person*>& providers)
-bool Reports::generateProviderReports(const std::list<Person*>& providers, Registration& registration, Filesystem& filesystem)
+bool Reports::generateProviderReports(const std::list<Person*>& providers, Registration& registration)
 {
     std::stringstream report;
     if (!providers.empty())
     {
     	for (auto providerPtr : providers) {
+            if (!providerPtr) continue;
+
             std::string providerReport = formatProviderDetails(*providerPtr);
             report << providerReport << std::endl;
 
@@ -57,9 +61,14 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
 
             for (auto servicePtr : providerPtr->services) {
                 if (servicePtr) {
-                    // Provider name
+                    // member name
                     Person* member = registration.getMember(servicePtr->memberNumber);
-                    const std::string memberName = member->name;
+                    std::string memberName = member->name;
+                    if (!member) {
+                        std::cout << "Member Name not Found" << std::endl;
+                        memberName = "N/A";
+                    }
+                    else  memberName = member->name;
 
                     std::string serviceReport = formatServiceProvider(*servicePtr, memberName, totalFee);
                     report << serviceReport << std::endl;
@@ -68,6 +77,7 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
             report << "Number of Consultations: " << numberOfConsultations << std::endl;
             report << "Total Fee for the Week: $" << std::fixed << std::setprecision(2) << totalFee << std::endl;
         }
+        std::cout << report.str() << std::endl;
         return true;
     }
     else
