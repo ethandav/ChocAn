@@ -58,8 +58,8 @@ void Terminal::open()
 		case 9:
 			running = false;
 			break;
-		/* case 11: // created to populate to test reports, ignore
-			dc->generateMemberReport();*/
+		case 11: // created to populate to test reports, ignore
+			dc->generateProviderReport();
 		default:
 			break;
 		}
