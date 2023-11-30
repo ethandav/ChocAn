@@ -8,6 +8,8 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
 {
     if (!members.empty())
     {
+        std::string currentDate = getCurrentDate();
+
     	for (const auto& memberPtr : members) 
         {
             if (!memberPtr) continue;
@@ -35,7 +37,7 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
                 }
             }
             
-            std::string filename = "Member_Report_" + memberPtr->name + ".txt";
+            std::string filename = memberPtr->name + "_" + currentDate + ".txt";
             if (!filesystem.saveReportToFile("members", filename, report.str()))
             {
                 return false;
@@ -47,11 +49,13 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
         return false;
 }
 
-// bool Reports::generateProviderReports(const std::list<Person*>& providers)
+
 bool Reports::generateProviderReports(const std::list<Person*>& providers, Registration& registration, Filesystem &filesystem)
 {
     if (!providers.empty())
     {
+        std::string currentDate = getCurrentDate();
+
     	for (const auto& providerPtr : providers) 
         {
             if (!providerPtr) continue;
@@ -81,7 +85,7 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
             report << "Number of Consultations: " << numberOfConsultations << std::endl;
             report << "Total Fee for the Week: $" << std::fixed << std::setprecision(2) << totalFee << std::endl;
 
-            std::string filename = "Provider_Report_" + providerPtr->name + ".txt";
+            std::string filename = providerPtr->name + "_" + currentDate + ".txt";
             if (!filesystem.saveReportToFile("providers", filename, report.str()))
             {
                 return false;
