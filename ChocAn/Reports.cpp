@@ -110,9 +110,48 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
     else
         return false;
 }
+bool Reports::generateSummaryReport(const std::list<Person*>& providers, Filesystem &filesystem)
+{
+    std::stringstream report;
+    if (!providers.empty())
+    {
+        int totalProviders = 0;
+        int totalConsultations = 0;
+        float overallFees = 0.0;
+    	for (const auto& providerPtr : providers) 
+        {
+            if (!providerPtr) continue;
+            float providerEarnings = 0.0;
+            bool madeMoney = false;
 
-/* bool Reports::LastWeekRange(const std::string & serviceDate) {
-} */
+            for (const auto& servicePtr : providerPtr->services) 
+            {
+                if (servicePtr) 
+                {
+                    madeMoney = true;
+                    totalConsultations += 1;
+                    providerEarnings += servicePtr->totalFee;
+                }
+            }
+
+            if (madeMoney) totalProviders += 1;
+            overallFees += providerEarnings;
+
+            report << "Name: " << providerPtr->name << "\n";
+            report << "# of Consultations: " << providerPtr->services.size();
+            report << "Total Fee for the Week: $" << std::fixed << std::setprecision(2) << providerEarnings << "\n";
+        }
+        report << "________________________________" << "\n";
+        report << "Total # of Providers: " << totalProviders << "\n";
+        report << "Total # of Consultations: " << totalConsultations << "\n";
+        report << "Overall Combined Fees: " << std::fixed << std::setprecision(2) << overallFees << "\n";
+        report << "________________________________" << "\n";
+
+        std::string filename = "Manager_Summary.txt";
+        return filesystem.saveReportToFile("Summary", filename, report.str());
+    }
+    return false;
+}
 
 // Current date helper function
 std::string Reports::getCurrentDate()
