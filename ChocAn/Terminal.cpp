@@ -72,13 +72,29 @@ void Terminal::displayMenu()
 
 void Terminal::getIntInput(int* input)
 {
-	std::cin >> *input;
+	while (true)
+	{
+		if (std::cin >> *input) {
+			break;
+		} else {
+		    std::cout << "Invalid input. Please enter a valid integer: ";
+			flushInput();
+		}
+	}
 	flushInput();
 }
 
 void Terminal::getCharInput(char* input)
 {
-	std::cin >> *input;
+	while (true)
+	{
+		if (std::cin >> *input) {
+			break;
+		} else {
+		    std::cout << "Invalid input. Please enter a valid character: ";
+			flushInput();
+		}
+	}
 	flushInput();
 }
 
@@ -114,8 +130,7 @@ void Terminal::getPersonInput(Person* person)
 	std::cin >> person->name;
 	flushInput();
 	std::cout << "ID Number: ";
-	std::cin >> person->number;
-	flushInput();
+	getIntInput(&person->number);
 	std::cout << "Street Address: ";
 	std::cin >> person->address.addr;
 	flushInput();
@@ -126,8 +141,7 @@ void Terminal::getPersonInput(Person* person)
 	std::cin >> person->address.state;
 	flushInput();
 	std::cout << "Zip: ";
-	std::cin >> person->address.zip;
-	flushInput();
+	getIntInput(&person->address.zip);
 }
 
 void Terminal::getServiceRecordInput(ServiceRecord* record)
@@ -145,6 +159,7 @@ void Terminal::displayString(std::string displayStr)
 
 void Terminal::flushInput()
 {
+	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
