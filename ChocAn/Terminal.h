@@ -17,8 +17,9 @@ public:
 	void getPersonInput(Person* person);
 	void getServiceRecordInput(ServiceRecord* record);
 	void getIntInput(int* input);
+	void getCharInput(char* input);
 	void displayString(std::string displayStr);
-	//void updatePersonData(Registration& registration, Person* person);
+	bool confirm();
 private:
 	bool running;
 	DataCenter* dc;

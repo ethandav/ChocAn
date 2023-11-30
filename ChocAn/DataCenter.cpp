@@ -216,6 +216,7 @@ void DataCenter::enterServiceRecord()
 	int					memberNumber	= 0;
 	int					providerNumber	= 0;
 	std::stringstream	ss;
+	Service				service;
 
 	terminal.displayString("Provider Number: ");
 	terminal.getIntInput(&providerNumber);
@@ -240,7 +241,6 @@ void DataCenter::enterServiceRecord()
 	record->memberNumber = memberNumber;
 
 	currTime = std::chrono::system_clock::to_time_t(now);
-
 #ifdef _WIN32
 	std::tm localTime;
     localtime_s(&localTime, &currTime);
@@ -250,9 +250,13 @@ void DataCenter::enterServiceRecord()
 #endif
 
 	record->currTime = ss.str();
-	
+
 	terminal.getServiceRecordInput(record);
-	filesystem.getServiceByCode(record->serviceCode);
+	validateServiceCode(&service);
+
+	record->serviceCode = service.code;
+	record->totalFee = service.fee;
+
 	if (filesystem.saveServiceRecord(record))
 	{
 		terminal.displayString("Service Record Saved\n");
@@ -263,6 +267,28 @@ void DataCenter::enterServiceRecord()
 	{
 		terminal.displayString("Error creating service record.\n");
 	}
+}
+
+void DataCenter::validateServiceCode(Service* service)
+{
+	int serviceCode;
+
+	do
+	{
+		do
+		{
+			terminal.displayString("Service Code: ");
+			terminal.getIntInput(&serviceCode);
+
+		} while (!filesystem.getServiceByCode(service, serviceCode));
+
+		std::string display = (
+			"Service: " + service->name + "\n" +
+			"Fee: " + std::to_string(service->fee) + "\n" +
+			"Is this correct (y/n): "
+			);
+		terminal.displayString(display);
+	} while (!terminal.confirm());
 }
 
 void DataCenter::editPerson(Person* person)

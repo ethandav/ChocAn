@@ -72,8 +72,56 @@ void Terminal::displayMenu()
 
 void Terminal::getIntInput(int* input)
 {
-	std::cin >> *input;
+	while (true)
+	{
+		if (std::cin >> *input) {
+			break;
+		} else {
+		    std::cout << "Invalid input. Please enter a valid integer: ";
+			flushInput();
+		}
+	}
 	flushInput();
+}
+
+void Terminal::getCharInput(char* input)
+{
+	while (true)
+	{
+		if (std::cin >> *input) {
+			break;
+		} else {
+		    std::cout << "Invalid input. Please enter a valid character: ";
+			flushInput();
+		}
+	}
+	flushInput();
+}
+
+bool Terminal::confirm()
+{
+	bool valid = false;
+	while(!valid)
+	{
+		char confirm;
+		while (true)
+		{
+			getCharInput(&confirm);
+			switch (std::tolower(confirm))
+			{
+			case 'y':
+				return true;
+				break;
+			case 'n':
+				return false;
+				break;
+			default:
+				displayString("Invalid input (y or n): ");
+				break;
+			}
+		}
+
+	}
 }
 
 void Terminal::getPersonInput(Person* person)
@@ -82,8 +130,7 @@ void Terminal::getPersonInput(Person* person)
 	std::cin >> person->name;
 	flushInput();
 	std::cout << "ID Number: ";
-	std::cin >> person->number;
-	flushInput();
+	getIntInput(&person->number);
 	std::cout << "Street Address: ";
 	std::cin >> person->address.addr;
 	flushInput();
@@ -94,20 +141,13 @@ void Terminal::getPersonInput(Person* person)
 	std::cin >> person->address.state;
 	flushInput();
 	std::cout << "Zip: ";
-	std::cin >> person->address.zip;
-	flushInput();
+	getIntInput(&person->address.zip);
 }
 
 void Terminal::getServiceRecordInput(ServiceRecord* record)
 {
 	std::cout << "Date of Service (MM-DD-YYYY): ";
 	std::getline(std::cin, record->servTime);
-	std::cout << "Service Code: ";
-	std::cin >> record->serviceCode;
-	flushInput();
-	std::cout << "Total Fee: ";
-	std::cin >> record->totalFee;
-	flushInput();
 	std::cout << "Additional Comments: ";
 	std::getline(std::cin, record->comments);
 }
@@ -119,50 +159,6 @@ void Terminal::displayString(std::string displayStr)
 
 void Terminal::flushInput()
 {
+	std::cin.clear();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
-
-//void Terminal::updatePersonData(Registration& registration, Person* person) 
-//{
-//    if(!person) 
-//	{
-//        std::cout << "No person selected for update.\n";
-//        return;
-//    }
-//
-//    std::string name, addr, city, state;
-//    int zip, number;
-//
-//    std::cout << "Enter new name: ";
-//    std::getline(std::cin, name);
-//    person->name = name;
-//
-//    std::cout << "Enter new address: ";
-//    std::getline(std::cin, addr);
-//    person->address.addr = addr;
-//
-//    std::cout << "Enter new city: ";
-//    std::getline(std::cin, city);
-//    person->address.city = city;
-//
-//    std::cout << "Enter new state: ";
-//    std::getline(std::cin, state);
-//    person->address.state = state;
-//
-//    std::cout << "Enter new zip code: ";
-//    std::cin >> zip;
-//    std::cin.ignore(); 
-//    person->address.zip = zip;
-//
-//
-//    std::cout << "Enter new number: ";
-//    std::cin >> number;
-//    std::cin.ignore(); 
-//    person->number = number;
-//
-//    if (registration.editPerson(person)) {
-//        std::cout << "Person data updated successfully.\n";
-//    } else {
-//        std::cout << "Failed to update person data.\n";
-//    }
-//}

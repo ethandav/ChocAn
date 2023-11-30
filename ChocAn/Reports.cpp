@@ -7,14 +7,20 @@
 bool Reports::generateMemberReports(const std::list<Person*>& members, Registration& registration, Filesystem& filesystem) 
 {
     std::stringstream report;
+
     if (!members.empty())
     {
     	for (auto memberPtr : members) {
             std::string memberReport = formatMemberDetails(*memberPtr);
+            Service service;
+
             report << memberReport << std::endl;
 
             for (auto servicePtr : memberPtr->services) {
                 if (servicePtr) {
+                
+                    filesystem.getServiceByCode(&service, servicePtr->serviceCode);
+
                     // date of service (servTime)
                     const std::string dateOfService = servicePtr->servTime;
 
@@ -23,7 +29,7 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
                     const std::string providerName = provider->name;
 
                     // Service name
-                    const std::string serviceName = filesystem.getServiceByCode(servicePtr->serviceCode)->name;
+                    const std::string serviceName = service.name;
 
                     std::string serviceReport = formatServiceMember(dateOfService, providerName, serviceName);
                     report << serviceReport << std::endl;
