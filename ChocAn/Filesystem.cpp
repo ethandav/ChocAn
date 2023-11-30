@@ -1,5 +1,12 @@
+// Filesystem.cpp
+// Implementation file for the Filesystem class, which handle all File I/O operations.
+
 #include "Filesystem.h"
 
+/// <summary>
+/// Retrieves a directory of services from the disk that available to ChocAn Members through their providers
+/// </summary>
+/// <returns>The Service directory as a string</returns>
 std::string Filesystem::getProviderDirectory()
 {
 	std::ifstream fs;
@@ -18,6 +25,13 @@ std::string Filesystem::getProviderDirectory()
 	return parseContents();
 }
 
+/// <summary>
+/// Opens the provider directory and searches for the provided service code. If the service code is found
+/// the provided pointer to a service struct is populated with the data.
+/// </summary>
+/// <param name="service"> - A Pointer to the service struct</param>
+/// <param name="lookupCode"> - A user entered service code</param>
+/// <returns>True on successful retrieval. False if no service is found by the code</returns>
 bool Filesystem::getServiceByCode(Service* service, int lookupCode) 
 {
 	std::ifstream file;
@@ -74,6 +88,11 @@ bool Filesystem::getServiceByCode(Service* service, int lookupCode)
 	return false;
 }
 
+/// <summary>
+/// Saves data from the provided ServiceRecord struct to disk
+/// </summary>
+/// <param name="record"> - A pointer to a ServiceRecord struct</param>
+/// <returns>True on successful write. False if file is not open</returns>
 bool Filesystem::saveServiceRecord(ServiceRecord* record)
 {
 	std::string fn = "./filesystem/Service_" + std::to_string(record->serviceCode) + "_" + std::to_string(record->memberNumber);
@@ -113,6 +132,12 @@ bool saveReportToFile(const std::string& filename, const std::string& reportData
 	return true;
 }
 
+/// <summary>
+/// Opens a file
+/// </summary>
+/// <param name="fs"> - The file stream</param>
+/// <param name="filename"> - Name of file to be opened</param>
+/// <returns></returns>
 bool Filesystem::openFile(std::ifstream& fs, const std::string& filename)
 {
 	fs.open(filename);
@@ -124,6 +149,11 @@ bool Filesystem::openFile(std::ifstream& fs, const std::string& filename)
 	return true;
 }
 
+/// <summary>
+/// Reads an open files and parses the contents line by line to a vector
+/// </summary>
+/// <param name="fs"> - The file stream</param>
+/// <returns>True on successful files parsing. False if file is not open</returns>
 bool Filesystem::readFile(std::ifstream& fs)
 {
 	std::string line = "";
@@ -141,6 +171,11 @@ bool Filesystem::readFile(std::ifstream& fs)
 	return true;
 }
 
+/// <summary>
+/// Closes the open file in the stream.
+/// </summary>
+/// <param name="fs"> - The file stream</param>
+/// <returns>True if file is closed. False if no file is open in stream</returns>
 bool Filesystem::closeFile(std::ifstream& fs)
 {
 	if (fs.is_open())
@@ -155,6 +190,10 @@ bool Filesystem::closeFile(std::ifstream& fs)
 	}
 }
 
+/// <summary>
+/// Converts lines in fileContents vector to a string for display by the terminal.
+/// </summary>
+/// <returns>The entire contents as a string</returns>
 std::string Filesystem::parseContents()
 {
 	std::string contents = "";

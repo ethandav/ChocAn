@@ -23,5 +23,4 @@ private:
 	std::list<Person*> providers;
 	
 	Person* findByNumber(const std::list<Person*>& list, int number);
-	bool editPerson(Person* person);
 };

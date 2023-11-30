@@ -1,6 +1,13 @@
+// Terminal.cpp
+// Implementation file for the Terminal class, which handles all user input and display.
+
 #include "Terminal.h"
 #include "DataCenter.h"
 
+/// <summary>
+/// Creates a connection between the DataCenter and Terminal
+/// </summary>
+/// <param name="dc"> - Pointer to the initialized DataCenter</param>
 void Terminal::connect(DataCenter* dc)
 {
 	this->dc = dc;
@@ -10,6 +17,9 @@ void Terminal::connect(DataCenter* dc)
 	}
 }
 
+/// <summary>
+/// Starts terminal input loop and handles main menu user input
+/// </summary>
 void Terminal::open()
 {
 	int input = 0;
@@ -56,6 +66,9 @@ void Terminal::open()
 	}
 }
 
+/// <summary>
+/// Shows Main Menu
+/// </summary>
 void Terminal::displayMenu()
 {
 	std::cout << "Welcome to ChocAn! Enter 9 to quit\n";
@@ -70,6 +83,10 @@ void Terminal::displayMenu()
 	std::cout << "Enter your choice: ";
 }
 
+/// <summary>
+/// Prompts the user for a integer input. Validates input as int.
+/// </summary>
+/// <param name="input"> - Pointer to input variable</param>
 void Terminal::getIntInput(int* input)
 {
 	while (true)
@@ -84,6 +101,10 @@ void Terminal::getIntInput(int* input)
 	flushInput();
 }
 
+/// <summary>
+/// Prompts user for a char input. Validates input as char.
+/// </summary>
+/// <param name="input"> - Pointer to input variable</param>
 void Terminal::getCharInput(char* input)
 {
 	while (true)
@@ -98,6 +119,10 @@ void Terminal::getCharInput(char* input)
 	flushInput();
 }
 
+/// <summary>
+/// Prompts the user for confirmation.
+/// </summary>
+/// <returns>True on user cofnimration. False if user selects N</returns>
 bool Terminal::confirm()
 {
 	bool valid = false;
@@ -127,6 +152,10 @@ bool Terminal::confirm()
 	return false; 	// Will not reach
 }
 
+/// <summary>
+/// Populates a Person struct
+/// </summary>
+/// <param name="person"> - A Pointer to a Person Struct</param>
 void Terminal::getPersonInput(Person* person)
 {
 	std::cout << "Name: ";
@@ -147,6 +176,10 @@ void Terminal::getPersonInput(Person* person)
 	getIntInput(&person->address.zip);
 }
 
+/// <summary>
+/// Populates a ServiceRecord struct
+/// </summary>
+/// <param name="record"> - A pointer to a ServiceRecord struct</param>
 void Terminal::getServiceRecordInput(ServiceRecord* record)
 {
 	std::cout << "Date of Service (MM-DD-YYYY): ";
@@ -155,11 +188,39 @@ void Terminal::getServiceRecordInput(ServiceRecord* record)
 	std::getline(std::cin, record->comments);
 }
 
+/// <summary>
+/// Displays a string
+/// </summary>
+/// <param name="displayStr"> - A string from the DataCenter</param>
 void Terminal::displayString(std::string displayStr)
 {
-	std::cout << displayStr;
+    // std::cout << displayStr;
+    if (displayStr.find(',') != std::string::npos) {
+        std::istringstream iss(displayStr);
+        std::string line;
+        std::cout << std::left << std::setw(10) << "ServiceCode" << std::setw(30) << "ServiceName" << std::setw(10) << "ServiceFee" << std::endl;
+        std::cout << std::string(50, '-') << std::endl; 
+
+        while (std::getline(iss, line)) {
+            std::istringstream lineStream(line);
+            std::string serviceCode, serviceName, serviceFee;
+            getline(lineStream, serviceCode, ',');
+            getline(lineStream, serviceName, ',');
+            getline(lineStream, serviceFee);
+
+            std::cout << std::left << std::setw(10) << serviceCode 
+                      << std::setw(30) << serviceName 
+                      << std::setw(10) << serviceFee << std::endl;
+        }
+    } else {
+        std::cout << displayStr << std::endl;
+    }
 }
 
+
+/// <summary>
+/// Flushes ci between multiple string inputs
+/// </summary>
 void Terminal::flushInput()
 {
 	std::cin.clear();
