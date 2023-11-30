@@ -66,11 +66,27 @@ void Terminal::open()
 	}
 }
 
+
+//// <summary>
+//// clears the screen for the menu to be redisplayed
+//// </summary>
+void Terminal::clearScreen()
+{
+    #ifdef _WIN32
+    std::system("cls");
+    #else
+    std::system("clear");
+    #endif
+}
+
+
+
 /// <summary>
 /// Shows Main Menu
 /// </summary>
 void Terminal::displayMenu()
 {
+	
 	std::cout << "Welcome to ChocAn! Enter 9 to quit\n";
 	std::cout << "1 - Register Member\n";
 	std::cout << "2 - Register Provider\n";
@@ -81,14 +97,50 @@ void Terminal::displayMenu()
 	std::cout << "7 - Show Provider Directory\n";
 	std::cout << "8 - Enter Service Record" << std::endl;
 	std::cout << "Enter your choice: ";
-
-	/* Alternate menu display
+	
+	/*
+	// Alternate menu display
 	std::cout << "Welcome to ChocAn! Enter (9) to quit\n";
 	std::cout << "(1) Register Member\t\t (2) Register Provider\n";
 	std::cout << "(3) Update Member\t\t (4) Update Provider\n";
 	std::cout << "(5) Remove Member\t\t (6) Remove Provider\n";
 	std::cout << "(7) Show Provider Directory\t (8) Enter Service Record\n";
-	std::cout << "Enter your choice: ";*/
+	std::cout << "Enter your choice: ";
+	*/
+
+	/*
+	// Alternate Alternate Menu option
+    std::cout << "Press any key to return to the main menu...";
+    std::cin.get(); 
+    clearScreen(); 
+
+    std::cout << "\033[1;31m"; // Bold and red text
+    std::cout << "+--------------------------------------+" << std::endl;
+    std::cout << "|               ChocAn                 |" << std::endl;
+    std::cout << "+--------------------------------------+" << std::endl;
+    std::cout << "\033[0m"; 
+    std::cout << "| Welcome to ChocAn! Enter 9 to quit   |" << std::endl;
+    std::cout << "|--------------------------------------|" << std::endl;
+    std::cout << "| 1 - Register Member                  |" << std::endl;
+    std::cout << "| 2 - Register Provider                |" << std::endl;
+    std::cout << "| 3 - Update Member                    |" << std::endl;
+    std::cout << "| 4 - Update Provider                  |" << std::endl;
+    std::cout << "| 5 - Remove Member                    |" << std::endl;
+    std::cout << "| 6 - Remove Provider                  |" << std::endl;
+    std::cout << "| 7 - Show Provider Directory          |" << std::endl;
+    std::cout << "| 8 - Enter Service Record             |" << std::endl;
+    std::cout << "|--------------------------------------|" << std::endl;
+    std::cout << "| Enter your choice: [ ]               |" << std::endl;
+    std::cout << "\033[1;31m"; // Bold and red text
+    std::cout << "+--------------------------------------+" << std::endl;
+    std::cout << "|        © 2023 ChocAn Group 8         |" << std::endl;
+    std::cout << "+--------------------------------------+" << std::endl;
+    std::cout << "\033[0m"; 
+
+    std::cout << "\033[A\033[A\033[A\033[A"; 
+    std::cout << "\033[22C"; 
+	*/
+
 }
 
 /// <summary>

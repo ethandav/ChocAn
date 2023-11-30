@@ -20,6 +20,7 @@ public:
 	void getCharInput(char* input);
 	void displayString(std::string displayStr);
 	bool confirm();
+	void clearScreen();
 private:
 	bool running;
 	DataCenter* dc;
