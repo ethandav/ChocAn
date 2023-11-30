@@ -12,9 +12,8 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
         {
             if (!memberPtr) continue;
             std::stringstream report; 
-            report << formatMemberDetails(*memberPtr) << std::endl;
-            //std::string memberReport = formatMemberDetails(*memberPtr);
-            //report << memberReport << std::endl;
+
+            report << formatMemberDetails(*memberPtr) << "\n";
             for (const auto& servicePtr : memberPtr->services) 
             {
                 if (servicePtr) 
@@ -32,8 +31,6 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
                     // Service name
                     const std::string serviceName = service.name;
 
-                    //std::string serviceReport = formatServiceMember(dateOfService, providerName, serviceName);
-                    //report << serviceReport << std::endl;
                     report << formatServiceMember(dateOfService, providerName, serviceName) << std::endl;
                 }
             }
@@ -59,8 +56,6 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
         {
             if (!providerPtr) continue;
             std::stringstream report;
-            //std::string providerReport = formatProviderDetails(*providerPtr);
-            //report << providerReport << std::endl;
             report << formatProviderDetails(*providerPtr) << std::endl;
 
             float totalFee = 0.0;
@@ -80,8 +75,6 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
                     else  
                         memberName = member->name;
 
-                    //std::string serviceReport = formatServiceProvider(*servicePtr, memberName, totalFee);
-                    //report << serviceReport << std::endl;
                     report << formatServiceProvider(*servicePtr, memberName, totalFee) << std::endl;
                 }
             }
@@ -93,8 +86,21 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
             {
                 return false;
             }
+            // Writing EFT
+            if (totalFee > 0.0)
+            {
+                std::stringstream EFT;
+                EFT << "Name: " << providerPtr-> name << "\n";
+                EFT << "Provider Number: " << providerPtr->number << "\n";
+                EFT << "Amount to be Transferred: " << totalFee << "\n";
+
+                std::string filenameEFT = "EFT_" + providerPtr->name + ".txt";
+                if (!filesystem.saveReportToFile("EFT", filenameEFT, EFT.str()))
+                {
+                    return false;
+                }
+            }
         }
-        //std::cout << report.str() << std::endl;
         return true;
     }
     else
