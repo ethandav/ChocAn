@@ -116,14 +116,21 @@ bool Filesystem::saveServiceRecord(ServiceRecord* record)
 		return false;
 	}
 }
-
-bool saveReportToFile(const std::string& filename, const std::string& reportData)
+/// <summary>
+/// Saves generated report to filesystem subdirectory
+/// </summary>
+bool Filesystem::saveReportToFile(const std::string& subDirectory, const std::string& filename, const std::string& reportData)
 {
-	std::ofstream of(filename);
+	std::string dirPath = "./filesystem/reports/" + subDirectory;
+
+	std::filesystem::create_directories(dirPath);
+
+	std::string filePath = dirPath + "/" + filename;
+	std::ofstream of(filePath);
 
 	if (!of.is_open())
 	{
-		std::cerr << "Error: Unable to open file: " << filename << std::endl;
+		std::cerr << "Error: Unable to open file: " << filePath << std::endl;
 		return false;
 	}
 

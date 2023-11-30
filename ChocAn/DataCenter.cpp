@@ -174,7 +174,7 @@ void DataCenter::generateMemberReport()
 void DataCenter::generateProviderReport()
 {
 	const std::list<Person*>& providers = registration.getProviderList();
-	if(reports.generateProviderReports(providers, registration))
+	if(reports.generateProviderReports(providers, registration, filesystem))
 	{
 		terminal.displayString("Provider Report Generation Success\n");
 	}

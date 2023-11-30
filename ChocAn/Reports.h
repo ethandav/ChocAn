@@ -11,7 +11,7 @@ public:
 	~Reports() {};
 	// Weekly reports
 	bool generateMemberReports(const std::list<Person*>& members, Registration& registration, Filesystem& filesystem);	
-	bool generateProviderReports(const std::list<Person*>& providers, Registration& registration);
+	bool generateProviderReports(const std::list<Person*>& providers, Registration& registration, Filesystem& filesystem);
 	// bool generateProviderReports(const std::list<Person*>& providers);	
 	// Manual reports
 	bool generateMemberReportByID(const std::list<Person*>& members, int memberID);
