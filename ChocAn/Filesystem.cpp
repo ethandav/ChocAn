@@ -163,20 +163,23 @@ bool Filesystem::openFile(std::ifstream& fs, const std::string& filename)
 /// <returns>True on successful files parsing. False if file is not open</returns>
 bool Filesystem::readFile(std::ifstream& fs)
 {
-	std::string line = "";
+    std::string line = "";
 
-	if (!fs.is_open())
-	{
-		std::cerr << "Error: File is not open" << std::endl;
-		return false;
-	}
+    if (!fs.is_open())
+    {
+        std::cerr << "Error: File is not open" << std::endl;
+        return false;
+    }
 
-	while (std::getline(fs, line))
-	{
-		fileContents.push_back(line);
-	}
-	return true;
+    fileContents.clear(); // Clear the contents before reading new data
+
+    while (std::getline(fs, line))
+    {
+        fileContents.push_back(line);
+    }
+    return true;
 }
+
 
 /// <summary>
 /// Closes the open file in the stream.
