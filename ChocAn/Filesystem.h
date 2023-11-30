@@ -15,6 +15,7 @@ public:
 	std::string getProviderDirectory();
 	bool getServiceByCode(Service* service, int lookupCode);
 	bool saveServiceRecord(ServiceRecord* record);
+	bool saveReportToFile(const std::string& filename, const std::string& reportData);
 
 private:
 	bool openFile(std::ifstream& fs, const std::string& filename);

@@ -6,7 +6,7 @@
 /* Reports class member function implementation */
 bool Reports::generateMemberReports(const std::list<Person*>& members, Registration& registration, Filesystem& filesystem) 
 {
-    std::stringstream report;
+    std::stringstream report; 
 
     if (!members.empty())
     {

@@ -98,6 +98,21 @@ bool Filesystem::saveServiceRecord(ServiceRecord* record)
 	}
 }
 
+bool saveReportToFile(const std::string& filename, const std::string& reportData)
+{
+	std::ofstream of(filename);
+
+	if (!of.is_open())
+	{
+		std::cerr << "Error: Unable to open file: " << filename << std::endl;
+		return false;
+	}
+
+	of << reportData;
+	of.close();
+	return true;
+}
+
 bool Filesystem::openFile(std::ifstream& fs, const std::string& filename)
 {
 	fs.open(filename);

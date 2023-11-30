@@ -110,9 +110,11 @@ bool Terminal::confirm()
 			switch (std::tolower(confirm))
 			{
 			case 'y':
+				valid = true;
 				return true;
 				break;
 			case 'n':
+				valid = true;
 				return false;
 				break;
 			default:
@@ -122,6 +124,7 @@ bool Terminal::confirm()
 		}
 
 	}
+	return false; 	// Will not reach
 }
 
 void Terminal::getPersonInput(Person* person)
