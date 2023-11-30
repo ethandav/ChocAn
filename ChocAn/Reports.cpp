@@ -25,7 +25,7 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
                     // Service name
                     const std::string serviceName = filesystem.getServiceByCode(servicePtr->serviceCode)->name;
 
-                    std::string serviceReport = formatServiceShort(dateOfService, providerName, serviceName);
+                    std::string serviceReport = formatServiceMember(dateOfService, providerName, serviceName);
                     report << serviceReport << std::endl;
                 }
             }
@@ -36,13 +36,32 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
         return false;
 }
 
-bool Reports::generateProviderReports(const std::list<Person*>& providers)
+// bool Reports::generateProviderReports(const std::list<Person*>& providers)
+bool Reports::generateProviderReports(const std::list<Person*>& providers, Registration& registration, Filesystem& filesystem)
 {
+    std::stringstream report;
     if (!providers.empty())
     {
-        /*for (auto provider : providers) {
-            //cout << providers.person.name << endl;
-        }*/
+    	for (auto providerPtr : providers) {
+            std::string providerReport = formatProviderDetails(*providerPtr);
+            report << providerReport << std::endl;
+
+            float totalFee = 0.0;
+            int numberOfConsultations = providerPtr->services.size();
+
+            for (auto servicePtr : providerPtr->services) {
+                if (servicePtr) {
+                    // Provider name
+                    Person* member = registration.getMember(servicePtr->memberNumber);
+                    const std::string memberName = member->name;
+
+                    std::string serviceReport = formatServiceProvider(*servicePtr, memberName, totalFee);
+                    report << serviceReport << std::endl;
+                }
+            }
+            report << "Number of Consultations: " << numberOfConsultations << std::endl;
+            report << "Total Fee for the Week: $" << std::fixed << std::setprecision(2) << totalFee << std::endl;
+        }
         return true;
     }
     else
@@ -82,7 +101,9 @@ std::string Reports::formatProviderDetails(const Person& provider) {
 		<< " " << provider.address.zip << "\n";
 	return ss.str();
 }
-std::string Reports::formatServiceShort(const std::string dateOfService, const std::string providerName, const std::string serviceName) {
+
+// this is for member reports
+std::string Reports::formatServiceMember(const std::string dateOfService, const std::string providerName, const std::string serviceName) {
 	std::stringstream ss;
 	ss << "Service Date: " << dateOfService << "\n" 
 		<< "Provider Number: " << providerName << "\n"
@@ -90,22 +111,16 @@ std::string Reports::formatServiceShort(const std::string dateOfService, const s
 	return ss.str();
 }
 
-std::string Reports::formatServiceRecord(const ServiceRecord& record) {
+// this is for provider reports
+std::string Reports::formatServiceProvider(const ServiceRecord& record, std::string memberName, float &totalFee) {
 	std::stringstream ss;
 	ss << "Service Date: " << record.servTime << "\n"		// (MM-DD-YYYY)
-		<< "Provider Number: " << record.providerNumber << "\n"	// Provider name? (25 characters)
+        << "Date and Time Data: " << record.currTime << "\n" // (MM-DD-YYYY HH:MM:SS)
+        << "Member Name: " << memberName << "\n"
 		<< "Member Number: " << record.memberNumber << "\n" 
-		<< "Service Code: " << record.serviceCode << "\t" 	// Service name? (20 characters)
-		<< "Fee: $" << std::fixed << std::setprecision(2) << record.totalFee << "\n"
-		<< "Comments: " << record.comments << "\n";
+		<< "Service Code: " << record.serviceCode << "\n" 
+		<< "Fee: $" << std::fixed << std::setprecision(2) << record.totalFee << "\n";
+        totalFee += record.totalFee;
+		// << "Comments: " << record.comments << "\n";
 	return ss.str();
 }
-
-const std::string findProvider(const std::list<Person*>& members, int id)
-{
-    for (auto memberPtr : members) { 
-        if (memberPtr->number == id) return memberPtr->name;
-    }
-    return "";
-}
-

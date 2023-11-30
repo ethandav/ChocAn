@@ -11,7 +11,8 @@ public:
 	~Reports() {};
 	// Weekly reports
 	bool generateMemberReports(const std::list<Person*>& members, Registration& registration, Filesystem& filesystem);	
-	bool generateProviderReports(const std::list<Person*>& providers);	
+	bool generateProviderReports(const std::list<Person*>& providers, Registration& registration, Filesystem& filesystem);
+	// bool generateProviderReports(const std::list<Person*>& providers);	
 	// Manual reports
 	bool generateMemberReportByID(const std::list<Person*>& members, int memberID);
 	bool generateProviderReportByID(const std::list<Person*>& providers, int providerID);
@@ -23,8 +24,8 @@ private:
 
 	std::string formatMemberDetails(const Person& member);			
 	std::string formatProviderDetails(const Person& provider);
-	std::string formatServiceRecord(const ServiceRecord& record);	
-		
-	std::string formatServiceShort(const std::string dateOfService, const std::string providerName, const std::string serviceName); // for member report
+	// std::string formatServiceRecord(const ServiceRecord& record);	
+	std::string formatServiceMember(const std::string dateOfService, const std::string providerName, const std::string serviceName); // for member report
+	std::string formatServiceProvider(const ServiceRecord& record, std::string memberName, float &totalFee);
 
 };
