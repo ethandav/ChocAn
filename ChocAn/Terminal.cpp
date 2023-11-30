@@ -191,21 +191,26 @@ void Terminal::getServiceRecordInput(ServiceRecord* record)
 /// <param name="displayStr"> - A string from the DataCenter</param>
 void Terminal::displayString(std::string displayStr)
 {
-    std::istringstream iss(displayStr);
-    std::string line;
-    std::cout << std::left << std::setw(10) << "ServiceCode" << std::setw(30) << "ServiceName" << std::setw(10) << "ServiceFee" << std::endl;
-    std::cout << std::string(50, '-') << std::endl; 
+    // std::cout << displayStr;
+    if (displayStr.find(',') != std::string::npos) {
+        std::istringstream iss(displayStr);
+        std::string line;
+        std::cout << std::left << std::setw(10) << "ServiceCode" << std::setw(30) << "ServiceName" << std::setw(10) << "ServiceFee" << std::endl;
+        std::cout << std::string(50, '-') << std::endl; 
 
-    while (std::getline(iss, line)) {
-        std::istringstream lineStream(line);
-        std::string serviceCode, serviceName, serviceFee;
-        getline(lineStream, serviceCode, ',');
-        getline(lineStream, serviceName, ',');
-        getline(lineStream, serviceFee);
-		
-        std::cout << std::left << std::setw(10) << serviceCode 
-                  << std::setw(30) << serviceName 
-                  << std::setw(10) << serviceFee << std::endl;
+        while (std::getline(iss, line)) {
+            std::istringstream lineStream(line);
+            std::string serviceCode, serviceName, serviceFee;
+            getline(lineStream, serviceCode, ',');
+            getline(lineStream, serviceName, ',');
+            getline(lineStream, serviceFee);
+
+            std::cout << std::left << std::setw(10) << serviceCode 
+                      << std::setw(30) << serviceName 
+                      << std::setw(10) << serviceFee << std::endl;
+        }
+    } else {
+        std::cout << displayStr << std::endl;
     }
 }
 
