@@ -107,21 +107,26 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
         return false;
 }
 
-/*bool Reports::generateMemberReportByID(const std::list<Person*>& members, int memberID) {
-    if (members.empty())
-        return false;
-    return true;
-}
-
-bool Reports::generateProviderReportByID(const std::list<Person*>& providers, int providerID) {
-    if (providers.empty())
-        return false;
-
-    return true;
-} */
-
 /* bool Reports::LastWeekRange(const std::string & serviceDate) {
 } */
+
+// Current date helper function
+std::string Reports::getCurrentDate()
+{
+    std::stringstream date;
+    auto now = std::chrono::system_clock::now();
+    std::time_t currTime = std::chrono::system_clock::to_time_t(now);
+
+#ifdef _WIN32
+    std::tm localTime;
+    localtime_s(&localTime, &currTime);
+    date << std::put_time(&localTime, "%m-%d-%Y");
+#else
+    date << std::put_time(std::localtime(&currTime), "%m-%d-%Y");
+#endif
+
+    return date.str();
+}
 // Member detail format
 std::string Reports::formatMemberDetails(const Person& member) 
 {

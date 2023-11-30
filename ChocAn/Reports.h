@@ -13,16 +13,12 @@ public:
 	bool generateMemberReports(const std::list<Person*>& members, Registration& registration, Filesystem& filesystem);	
 	bool generateProviderReports(const std::list<Person*>& providers, Registration& registration, Filesystem& filesystem);
 	//bool generateWeeklySummary();
-	
-	// Manual reports
-	//bool generateMemberReportByID(const std::list<Person*>& members, int memberID);
-	//bool generateProviderReportByID(const std::list<Person*>& providers, int providerID);
 
 private:
 	// Helper functions
 	//Member * findMember(const std::string& id);
 	//bool LastWeekRange(const std::string & serviceDate);	// Weekly report range
-
+	std::string getCurrentDate();
 	std::string formatMemberDetails(const Person& member);			
 	std::string formatProviderDetails(const Person& provider);
 	// std::string formatServiceRecord(const ServiceRecord& record);	

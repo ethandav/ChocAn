@@ -243,9 +243,9 @@ void DataCenter::enterServiceRecord()
 #ifdef _WIN32
 	std::tm localTime;
     localtime_s(&localTime, &currTime);
-    ss << std::put_time(&localTime, "%Y-%m-%d %H:%M:%S");
+	ss << std::put_time(&localTime, "%m-%d-%Y %H:%M:%S");
 #else
-    ss << std::put_time(std::localtime(&currTime), "%Y-%m-%d %H:%M:%S");
+	ss << std::put_time(std::localtime(&currTime), "%m-%d-%Y %H:%M:%S");
 #endif
 	record->currTime = ss.str();
 
