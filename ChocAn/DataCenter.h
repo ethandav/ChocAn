@@ -31,15 +31,16 @@ public:
 	void getProviderDirectory();
 	void enterServiceRecord();
 
-private:
-	void editPerson(Person* person);
-	void validateServiceCode(Service* service);
 	bool registerMember(Person* person);
 	bool registerProvider(Person* person);
 	bool removeMember(const int& memberNumber);
 	bool removeProvider(const int& providerNumber);
 	bool validateMember(const int& memberNumber);
 	bool enterServiceRecord(ServiceRecord* record);
+
+private:
+	void editPerson(Person* person);
+	void validateServiceCode(Service* service);
 
 	Terminal terminal;
 	Registration registration;
