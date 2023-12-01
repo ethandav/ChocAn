@@ -32,7 +32,7 @@ Registration::~Registration()
 /// <returns>True on successful insert</returns>
 bool Registration::registerMember(Person* member)
 {
-	if(member != nullptr){
+	if(member != nullptr && member->number){
 		members.push_back(member);
 		return true;
 	}
@@ -46,7 +46,7 @@ bool Registration::registerMember(Person* member)
 /// <returns>True on successful insert</returns>
 bool Registration::registerProvider(Person* provider)
 {
-	if(provider != nullptr){
+	if(provider != nullptr && provider->number){
 		providers.push_back(provider);
 		return true;
 	}
