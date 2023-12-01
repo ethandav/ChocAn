@@ -27,6 +27,22 @@ struct Person
 	Address						address;
 	int							number;
 	std::list<ServiceRecord*>	services;
+
+	Person() {};
+	Person(
+		std::string aName,
+		int			aNumber,
+		std::string aStreet,
+		std::string aCity,
+		std::string aState,
+		int			aZip
+	) : name(aName), number(aNumber)
+	{
+		address.addr = aStreet;
+		address.city = aCity;
+		address.state = aState;
+		address.zip = aZip;
+	}
 };
 
 struct Service
