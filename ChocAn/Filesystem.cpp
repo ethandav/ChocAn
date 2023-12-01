@@ -95,6 +95,11 @@ bool Filesystem::getServiceByCode(Service* service, int lookupCode)
 /// <returns>True on successful write. False if file is not open</returns>
 bool Filesystem::saveServiceRecord(ServiceRecord* record)
 {
+	if (!record->memberNumber || !record->providerNumber || !record->serviceCode)
+	{
+		return false;
+	}
+
 	std::string fn = "./filesystem/Service_" + std::to_string(record->serviceCode) + "_" + std::to_string(record->memberNumber);
 	std::ofstream of(fn);
 
