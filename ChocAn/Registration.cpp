@@ -77,10 +77,10 @@ bool Registration::removeMember(const int memberNumber)
 /// <returns>True on successful removal</returns>
 bool Registration::removeProvider(const int providerNumber)
 {
-	Person* target = findByNumber(members, providerNumber);
+	Person* target = findByNumber(providers, providerNumber);
 	if (target != nullptr)
 	{
-		members.remove(target);
+		providers.remove(target);
 		delete target;
 		return true;
 	}
