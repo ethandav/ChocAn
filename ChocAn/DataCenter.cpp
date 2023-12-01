@@ -30,11 +30,15 @@ void DataCenter::registerMember()
 {
 	Person* newMember = new Person();
 	terminal.getPersonInput(newMember);
-
-	if (registration.registerMember(newMember))
+	if (registerMember(newMember))
 	{
 		terminal.displayString("Member succesfully Added!\n");
 	}
+}
+
+bool DataCenter::registerMember(Person* newMember)
+{
+	return registration.registerMember(newMember);
 }
 
 /// <summary>
@@ -45,11 +49,15 @@ void DataCenter::registerProvider()
 {
 	Person* newProvider = new Person();
 	terminal.getPersonInput(newProvider);
-
-	if (registration.registerProvider(newProvider))
+	if (registerProvider(newProvider))
 	{
 		terminal.displayString("Provider succesfully Added!\n");
 	}
+}
+
+bool DataCenter::registerProvider(Person* newProvider)
+{
+	return registration.registerProvider(newProvider);
 }
 
 /// <summary>
@@ -108,7 +116,7 @@ void DataCenter::removeMember()
 
 	terminal.displayString("Member Number: ");
 	terminal.getIntInput(&memberNumber);
-	if (registration.removeMember(memberNumber))
+	if (removeMember(memberNumber))
 	{
 		terminal.displayString("Member Removed\n");
 	}
@@ -116,6 +124,11 @@ void DataCenter::removeMember()
 	{
 		terminal.displayString("Member not found\n");
 	}
+}
+
+bool DataCenter::removeMember(const int& memberNumber)
+{
+	return registration.removeMember(memberNumber);
 }
 
 /// <summary>
@@ -127,7 +140,7 @@ void DataCenter::removeProvider()
 	int providerNumber = 0;
 	terminal.displayString("Provider Number: ");
 	terminal.getIntInput(&providerNumber);
-	if (registration.removeProvider(providerNumber))
+	if (removeProvider(providerNumber))
 	{
 		terminal.displayString("Provider Removed\n");
 	}
@@ -135,6 +148,11 @@ void DataCenter::removeProvider()
 	{
 		terminal.displayString("Provider not found\n");
 	}
+}
+
+bool DataCenter::removeProvider(const int& providerNumber)
+{
+	return registration.removeProvider(providerNumber);
 }
 
 /// <summary>
@@ -145,7 +163,7 @@ void DataCenter::validateMember()
 	int memberNumber = 0;
 	terminal.displayString("Member Number: ");
 	terminal.getIntInput(&memberNumber);
-	if (registration.validateMemberCard(memberNumber))
+	if (validateMember(memberNumber))
 	{
 		terminal.displayString("MemberCard Valid\n");
 	}
@@ -153,6 +171,11 @@ void DataCenter::validateMember()
 	{
 		terminal.displayString("MemberCard Invalid\n");
 	}
+}
+
+bool DataCenter::validateMember(const int& memberNumber)
+{
+	return registration.validateMemberCard(memberNumber);
 }
 
 //Reports
@@ -259,7 +282,7 @@ void DataCenter::enterServiceRecord()
 	record->totalFee = service.fee;
 
 	// Save the record to disk
-	if (filesystem.saveServiceRecord(record))
+	if (enterServiceRecord(record))
 	{
 		terminal.displayString("Service Record Saved\n");
 		// Add a copy of the service record to the Provider and Member lists
@@ -270,6 +293,11 @@ void DataCenter::enterServiceRecord()
 	{
 		terminal.displayString("Error creating service record.\n");
 	}
+}
+
+bool DataCenter::enterServiceRecord(ServiceRecord* record)
+{
+	return filesystem.saveServiceRecord(record);
 }
 
 /// <summary>
