@@ -29,6 +29,7 @@ void Terminal::open()
 	{
 		displayMenu();
 		getIntInput(&input);
+		clearScreen();
 		switch (input)
 		{
 		case 1:
