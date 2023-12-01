@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall
 TARGET = test
-SRC_FILES = Registration_testing.cpp
+SRC_FILES = Registration_testing.cpp ../Registration.cpp
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 all: $(TARGET)
