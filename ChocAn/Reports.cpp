@@ -201,8 +201,8 @@ std::string Reports::formatServiceMember(const std::string dateOfService, const 
 {
 	std::stringstream ss;
 	ss << "Service Date: " << dateOfService << "\n" 
-		<< "Provider Number: " << providerName << "\n"
-		<< "Member Number: " << serviceName << "\n";
+		<< "Provider Name: " << providerName << "\n"
+		<< "Service Name: " << serviceName << "\n";
 
 	return ss.str();
 }
