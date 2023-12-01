@@ -1,17 +1,23 @@
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall
-TARGET = test
-SRC_FILES = Registration_testing.cpp ../Registration.cpp
-OBJ_FILES = $(SRC_FILES:.cpp=.o)
+CXXFLAGS = -std=c++17 -Wall -g
+TARGET_REGISTRATION = test_registration
+TARGET_TERMINAL = test_filesystem
+SRC_FILES_REGISTRATION = Registration_testing.cpp ../Registration.cpp
+SRC_FILES_TERMINAL = Filesystem_testing.cpp ../Filesystem.cpp
+OBJ_FILES_REGISTRATION = $(SRC_FILES_REGISTRATION:.cpp=.o)
+OBJ_FILES_TERMINAL = $(SRC_FILES_TERMINAL:.cpp=.o)
 
-all: $(TARGET)
+all: $(TARGET_REGISTRATION) $(TARGET_TERMINAL)
 
-$(TARGET): $(OBJ_FILES)
+$(TARGET_REGISTRATION): $(OBJ_FILES_REGISTRATION)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+$(TARGET_TERMINAL): $(OBJ_FILES_TERMINAL)
 	$(CXX) $(CXXFLAGS) -o $@ $^
 
 %.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 clean:
-	rm -f $(TARGET) $(OBJ_FILES)
+	rm -f $(TARGET_REGISTRATION) $(TARGET_TERMINAL) $(OBJ_FILES_REGISTRATION) $(OBJ_FILES_TERMINAL)
 
