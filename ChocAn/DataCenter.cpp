@@ -241,7 +241,7 @@ void DataCenter::validateMember()
 	terminal.getIntInput(&memberNumber);
 	if (validateMember(memberNumber))
 	{
-		terminal.displayString("MemberCard Valid\n");
+		terminal.displayString("MemberCard Validated\n");
 	}
 	else
 	{
