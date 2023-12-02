@@ -316,18 +316,42 @@ bool Terminal::confirm()
 /// <param name="person"> - A Pointer to a Person Struct</param>
 void Terminal::getPersonInput(Person* person)
 {
+	// Formatted entry limits 
+	bool isValid = false;
+	
 	std::cout << "Name: ";
 	std::getline(std::cin, person->name);
+	person->name = person->name.substr(0, 25);
 	std::cout << "ID Number: ";
-	getIntInput(&person->number);
+	while (!isValid)
+	{
+		getIntInput(&person->number); 
+		isValid = std::to_string(person->number).length() == 9;
+		if (!isValid)
+		{
+			std::cout << "Invalid ID. Please enter a 9 digit number: ";
+		}
+	}
 	std::cout << "Street Address: ";
 	std::getline(std::cin, person->address.addr);
+	person->address.addr = person->address.addr.substr(0, 25);
 	std::cout << "City: ";
 	std::getline(std::cin, person->address.city);
+	person->address.city = person->address.city.substr(0, 14);
 	std::cout << "State: ";
 	std::getline(std::cin, person->address.state);
+	person->address.state = person->address.state.substr(0, 2);
+	isValid = false;
 	std::cout << "Zip: ";
-	getIntInput(&person->address.zip);
+	while (!isValid) 
+	{
+		getIntInput(&person->address.zip); 
+		isValid = std::to_string(person->address.zip).length() == 5;
+		if (!isValid) 
+		{
+			std::cout << "Invalid zipcode. Please enter a 5 digit zipcode: ";
+		}
+	}
 }
 
 /// <summary>
@@ -340,6 +364,7 @@ void Terminal::getServiceRecordInput(ServiceRecord* record)
 	std::getline(std::cin, record->servTime);
 	std::cout << "Additional Comments: ";
 	std::getline(std::cin, record->comments);
+	record->comments = record->comments.substr(0, 100);
 }
 
 /// <summary>
