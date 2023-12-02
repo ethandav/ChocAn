@@ -42,6 +42,7 @@ bool Registration::registerMember(Person* member)
 		else
 		{
 			std::cerr << "Error: Duplicate member number '" << member->number << "' was detected.\n";
+			return false;
 		}
 	}
 	return false;
@@ -64,6 +65,7 @@ bool Registration::registerProvider(Person* provider)
 		else
 		{
 			std::cerr << "Error: Duplicate provider number '" << provider->number << "' was detected.\n";
+			return false;
 		}
 	}
 	return false;

@@ -32,7 +32,11 @@ void DataCenter::registerMember()
 	terminal.getPersonInput(newMember);
 	if (registerMember(newMember))
 	{
-		terminal.displayString("Member succesfully Added!\n");
+		terminal.displayString("Member succesfully added!\n");
+	}
+	else 
+	{
+		terminal.displayString("Member registration failed.\n");
 	}
 }
 
@@ -51,7 +55,11 @@ void DataCenter::registerProvider()
 	terminal.getPersonInput(newProvider);
 	if (registerProvider(newProvider))
 	{
-		terminal.displayString("Provider succesfully Added!\n");
+		terminal.displayString("Provider succesfully added!\n");
+	}
+	else
+	{
+		terminal.displayString("Provider registration failed.\n");
 	}
 }
 
