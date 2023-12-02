@@ -1,9 +1,13 @@
+// Reports.cpp
+// Implementation file for Reports class, handles report generation for Members, Providers
+// , weekly summary for managers, and EFT data files. These reports are saved in the filesystem under reports.
+
 #include "Reports.h"
 #include <iomanip>
 #include <chrono>
 #include <ctime>
 
-/* Reports class member function implementation */
+// Member report method
 bool Reports::generateMemberReports(const std::list<Person*>& members, Registration& registration, Filesystem& filesystem) 
 {
     if (!members.empty())
@@ -48,7 +52,7 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
     else
         return false;
 }
-
+// Provider report method
 bool Reports::generateProviderReports(const std::list<Person*>& providers, Registration& registration, Filesystem &filesystem)
 {
     if (!providers.empty())
@@ -109,7 +113,7 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
     else
         return false;
 } 
-
+// Weekly summary report method
 bool Reports::generateSummaryReport(const std::list<Person*>& providers, Filesystem &filesystem)
 {
     std::stringstream report;
