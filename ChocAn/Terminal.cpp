@@ -22,7 +22,6 @@ void Terminal::connect(DataCenter* dc)
 /// </summary>
 void Terminal::open()
 {
-	int input = 0;
 	running = true;
 	isAdmin = false;
 
@@ -31,7 +30,6 @@ void Terminal::open()
 	if (isAdmin)
 	{
 		adminTerminal();
-
 	}
 	else
 	{
