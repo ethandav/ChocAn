@@ -44,6 +44,24 @@ void Filesystem::loadPeople(std::vector<std::string>& people, std::string file)
 	fileContents.clear();
 }
 
+bool Filesystem::savePersonToCsv(Person* person, std::string file)
+{
+	std::ofstream of(file, std::ios::app);
+	if (of.is_open())
+	{
+		of << person->name + ",";
+		of << std::to_string(person->number) + ",";
+		of << person->address.addr + ",";
+		of << person->address.city + ",";
+		of << person->address.state + ",";
+		of << std::to_string(person->address.zip) + "\n";
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 /// <summary>
 /// Opens the provider directory and searches for the provided service code. If the service code is found

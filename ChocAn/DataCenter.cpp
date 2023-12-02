@@ -98,6 +98,7 @@ void DataCenter::registerMember()
 	terminal.getPersonInput(newMember);
 	if (registerMember(newMember))
 	{
+		filesystem.savePersonToCsv(newMember,"./filesystem/members.csv");
 		terminal.displayString("Member succesfully Added!\n");
 	}
 }
@@ -117,6 +118,7 @@ void DataCenter::registerProvider()
 	terminal.getPersonInput(newProvider);
 	if (registerProvider(newProvider))
 	{
+		filesystem.savePersonToCsv(newProvider,"./filesystem/providers.csv");
 		terminal.displayString("Provider succesfully Added!\n");
 	}
 }
