@@ -22,5 +22,4 @@
 *.swo
 x64
 ChocAn/x64
-ChocAn/filesystem
 bin/

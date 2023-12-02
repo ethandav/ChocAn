@@ -158,6 +158,7 @@ void DataCenter::updateMember()
 
 	// Call the function to edit the Person Struct
 	editPerson(person);
+	filesystem.updatePersonFiles(registration.getMemberList(), "./filesystem/members.csv");
 }
 
 /// <summary>
@@ -180,6 +181,7 @@ void DataCenter::updateProvider()
 	}
 
 	editPerson(person);
+	filesystem.updatePersonFiles(registration.getProviderList(), "./filesystem/providers.csv");
 }
 
 /// <summary>
@@ -194,6 +196,7 @@ void DataCenter::removeMember()
 	terminal.getIntInput(&memberNumber);
 	if (removeMember(memberNumber))
 	{
+		filesystem.updatePersonFiles(registration.getMemberList(), "./filesystem/members.csv");
 		terminal.displayString("Member Removed\n");
 	}
 	else
@@ -218,6 +221,7 @@ void DataCenter::removeProvider()
 	terminal.getIntInput(&providerNumber);
 	if (removeProvider(providerNumber))
 	{
+		filesystem.updatePersonFiles(registration.getProviderList(), "./filesystem/providers.csv");
 		terminal.displayString("Provider Removed\n");
 	}
 	else

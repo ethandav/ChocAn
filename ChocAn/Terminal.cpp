@@ -140,6 +140,7 @@ void Terminal::providerTerminal()
 	{
 		displayProviderMenu();
 		getIntInput(&input);
+		clearScreen();
 		switch (input)
 		{
 		case 1:
@@ -338,7 +339,7 @@ void Terminal::displayString(std::string displayStr)
                       << std::setw(10) << serviceFee << std::endl;
         }
     } else {
-        std::cout << displayStr << std::endl;
+		std::cout << displayStr;
     }
 }
 

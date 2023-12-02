@@ -55,12 +55,30 @@ bool Filesystem::savePersonToCsv(Person* person, std::string file)
 		of << person->address.city + ",";
 		of << person->address.state + ",";
 		of << std::to_string(person->address.zip) + "\n";
+		of.close();
 		return true;
 	}
-	else
+	return false;
+}
+
+bool Filesystem::updatePersonFiles(std::list<Person*> people, std::string file)
+{
+	std::ofstream of(file, std::ios::trunc);
+	if (of.is_open())
 	{
-		return false;
+		for (const auto& ptr : people)
+		{
+			of << ptr->name + ",";
+			of << std::to_string(ptr->number) + ",";
+			of << ptr->address.addr + ",";
+			of << ptr->address.city + ",";
+			of << ptr->address.state + ",";
+			of << std::to_string(ptr->address.zip) + "\n";
+		}
+		of.close();
+		return true;
 	}
+	return false;
 }
 
 /// <summary>
