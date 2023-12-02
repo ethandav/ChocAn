@@ -15,7 +15,7 @@ Ethan Davis, James Truong, Aaron Ma, Kevin Ruiz Arzate, Grace Trieu, Jesus Quint
 - Run the ChocAn executable: ./ChocAn
 
 <h1>Testing</h1>
-Testing modules are included in ChocAn/testing. They can be compiled with the make command:
-./test_registration
-./test_filesystem
-./test_system
+Testing modules are included in ChocAn/testing. They can be compiled with the make command:<br>
+./test_registration<br>
+./test_filesystem<br>
+./test_system<br>
