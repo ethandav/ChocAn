@@ -62,7 +62,7 @@ void Terminal::displayLogin()
 
 	while (true)
 	{
-	    std::cout << "\033[1;31m"; // to Set text color to bold and red
+	    std::cout << "\033[1;31m";
         std::cout << "+--------------------------------------+" << std::endl;
         std::cout << "|           Welcome to ChocAn          |" << std::endl;
         std::cout << "+--------------------------------------+" << std::endl;
@@ -72,12 +72,11 @@ void Terminal::displayLogin()
         std::cout << "| 9 - Quit                             |" << std::endl;
 		std::cout << "|--------------------------------------|" << std::endl;
 		std::cout << "| Enter your choice: [ ]               |" << std::endl;
-		std::cout << "\033[1;31m"; // Bold and red text
+		std::cout << "\033[1;31m"; 
 		std::cout << "+--------------------------------------+" << std::endl;
 		std::cout << "|        © 2023 ChocAn Group 8         |" << std::endl;
 		std::cout << "+--------------------------------------+" << std::endl;
 		std::cout << "\033[0m"; 
-
 		std::cout << "\033[A\033[A\033[A\033[A"; 
 		std::cout << "\033[22C"; 
 		getIntInput(&choice);
@@ -194,7 +193,7 @@ void Terminal::displayAdminMenu()
 {
     clearScreen(); 
 
-    std::cout << "\033[1;31m"; // Bold and red text
+    std::cout << "\033[1;31m";
     std::cout << "+--------------------------------------+" << std::endl;
     std::cout << "|               ChocAn                 |" << std::endl;
     std::cout << "+--------------------------------------+" << std::endl;
@@ -211,12 +210,11 @@ void Terminal::displayAdminMenu()
     std::cout << "| 8 - Generate Member Report           |" << std::endl;
     std::cout << "|--------------------------------------|" << std::endl;
     std::cout << "| Enter your choice: [ ]               |" << std::endl;
-    std::cout << "\033[1;31m"; // Bold and red text
+    std::cout << "\033[1;31m"; 
     std::cout << "+--------------------------------------+" << std::endl;
     std::cout << "|        © 2023 ChocAn Group 8         |" << std::endl;
     std::cout << "+--------------------------------------+" << std::endl;
     std::cout << "\033[0m"; 
-
     std::cout << "\033[A\033[A\033[A\033[A"; 
     std::cout << "\033[22C"; 
 }
@@ -228,7 +226,7 @@ void Terminal::displayProviderMenu()
 {
     clearScreen(); 
 
-    std::cout << "\033[1;31m"; // Bold and red text
+    std::cout << "\033[1;31m";
     std::cout << "+--------------------------------------+" << std::endl;
     std::cout << "|               ChocAn                 |" << std::endl;
     std::cout << "+--------------------------------------+" << std::endl;
@@ -239,12 +237,11 @@ void Terminal::displayProviderMenu()
     std::cout << "| 2 - Enter Service Record             |" << std::endl;
     std::cout << "|--------------------------------------|" << std::endl;
     std::cout << "| Enter your choice: [ ]               |" << std::endl;
-    std::cout << "\033[1;31m"; // Bold and red text
+    std::cout << "\033[1;31m";
     std::cout << "+--------------------------------------+" << std::endl;
     std::cout << "|        © 2023 ChocAn Group 8         |" << std::endl;
     std::cout << "+--------------------------------------+" << std::endl;
     std::cout << "\033[0m"; 
-
     std::cout << "\033[A\033[A\033[A\033[A"; 
     std::cout << "\033[22C"; 
 }
