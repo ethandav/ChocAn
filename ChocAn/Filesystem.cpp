@@ -25,10 +25,10 @@ std::string Filesystem::getProviderDirectory()
 	return parseContents();
 }
 
-void Filesystem::loadProviders(std::vector<std::string>& providers)
+void Filesystem::loadPeople(std::vector<std::string>& people, std::string file)
 {
 	std::ifstream fs;
-	if (!openFile(fs, "./filesystem/providers.csv"))
+	if (!openFile(fs, file))
 	{
 		return;
 	}
@@ -40,7 +40,7 @@ void Filesystem::loadProviders(std::vector<std::string>& providers)
 
 	closeFile(fs);
 
-	providers = fileContents;
+	people = fileContents;
 	fileContents.clear();
 }
 

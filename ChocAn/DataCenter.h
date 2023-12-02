@@ -40,6 +40,7 @@ public:
 
 private:
 	void loadProviders();
+	void loadMembers();
 	void editPerson(Person* person);
 	void validateServiceCode(Service* service);
 

@@ -20,13 +20,14 @@ void DataCenter::start()
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
 	loadProviders();
+	loadMembers();
 	terminal.open();
 }
 
 void DataCenter::loadProviders()
 {
 	std::vector<std::string> providers;
-	filesystem.loadProviders(providers);
+	filesystem.loadPeople(providers, "./filesystem/providers.csv");
 
 	if (!providers.empty())
 	{
@@ -50,6 +51,38 @@ void DataCenter::loadProviders()
 				provider->address.zip = stoi(tokens[5]);
 
 				registerProvider(provider);
+		    }
+		}
+	}
+}
+
+void DataCenter::loadMembers()
+{
+	std::vector<std::string> members;
+	filesystem.loadPeople(members, "./filesystem/members.csv");
+
+	if (!members.empty())
+	{
+		for (const std::string& entry : members) {
+		    std::istringstream ss(entry);
+
+		    std::string token;
+		    std::vector<std::string> tokens;
+
+		    while (std::getline(ss, token, ',')) {
+		        tokens.push_back(token);
+		    }
+
+		    if (tokens.size() >= 5) {
+				Person* member= new Person();
+				member->name = tokens[0];
+				member->number = stoi(tokens[1]);
+				member->address.addr = tokens[2];
+				member->address.city = tokens[3];
+				member->address.state = tokens[4];
+				member->address.zip = stoi(tokens[5]);
+
+				registerMember(member);
 		    }
 		}
 	}
