@@ -19,7 +19,73 @@ void DataCenter::start()
 	{
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
+	loadProviders();
+	loadMembers();
 	terminal.open();
+}
+
+void DataCenter::loadProviders()
+{
+	std::vector<std::string> providers;
+	filesystem.loadPeople(providers, "./filesystem/providers.csv");
+
+	if (!providers.empty())
+	{
+		for (const std::string& entry : providers) {
+		    std::istringstream ss(entry);
+
+		    std::string token;
+		    std::vector<std::string> tokens;
+
+		    while (std::getline(ss, token, ',')) {
+		        tokens.push_back(token);
+		    }
+
+		    if (tokens.size() >= 5) {
+				Person* provider = new Person();
+				provider->name = tokens[0];
+				provider->number = stoi(tokens[1]);
+				provider->address.addr = tokens[2];
+				provider->address.city = tokens[3];
+				provider->address.state = tokens[4];
+				provider->address.zip = stoi(tokens[5]);
+
+				registerProvider(provider);
+		    }
+		}
+	}
+}
+
+void DataCenter::loadMembers()
+{
+	std::vector<std::string> members;
+	filesystem.loadPeople(members, "./filesystem/members.csv");
+
+	if (!members.empty())
+	{
+		for (const std::string& entry : members) {
+		    std::istringstream ss(entry);
+
+		    std::string token;
+		    std::vector<std::string> tokens;
+
+		    while (std::getline(ss, token, ',')) {
+		        tokens.push_back(token);
+		    }
+
+		    if (tokens.size() >= 5) {
+				Person* member= new Person();
+				member->name = tokens[0];
+				member->number = stoi(tokens[1]);
+				member->address.addr = tokens[2];
+				member->address.city = tokens[3];
+				member->address.state = tokens[4];
+				member->address.zip = stoi(tokens[5]);
+
+				registerMember(member);
+		    }
+		}
+	}
 }
 
 /// <summary>
@@ -32,11 +98,16 @@ void DataCenter::registerMember()
 	terminal.getPersonInput(newMember);
 	if (registerMember(newMember))
 	{
+<<<<<<< HEAD
 		terminal.displayString("Member succesfully added!\n");
 	}
 	else 
 	{
 		terminal.displayString("Member registration failed.\n");
+=======
+		filesystem.savePersonToCsv(newMember,"./filesystem/members.csv");
+		terminal.displayString("Member succesfully Added!\n");
+>>>>>>> b263891272813c60455e23a3a8d6674f928be3ad
 	}
 }
 
@@ -55,11 +126,16 @@ void DataCenter::registerProvider()
 	terminal.getPersonInput(newProvider);
 	if (registerProvider(newProvider))
 	{
+<<<<<<< HEAD
 		terminal.displayString("Provider succesfully added!\n");
 	}
 	else
 	{
 		terminal.displayString("Provider registration failed.\n");
+=======
+		filesystem.savePersonToCsv(newProvider,"./filesystem/providers.csv");
+		terminal.displayString("Provider succesfully Added!\n");
+>>>>>>> b263891272813c60455e23a3a8d6674f928be3ad
 	}
 }
 
