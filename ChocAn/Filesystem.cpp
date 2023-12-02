@@ -25,6 +25,26 @@ std::string Filesystem::getProviderDirectory()
 	return parseContents();
 }
 
+void Filesystem::loadProviders(std::vector<std::string>& providers)
+{
+	std::ifstream fs;
+	if (!openFile(fs, "./filesystem/providers.csv"))
+	{
+		return;
+	}
+
+	if (!readFile(fs))
+	{
+		return;
+	}
+
+	closeFile(fs);
+
+	providers = fileContents;
+	fileContents.clear();
+}
+
+
 /// <summary>
 /// Opens the provider directory and searches for the provided service code. If the service code is found
 /// the provided pointer to a service struct is populated with the data.

@@ -39,6 +39,7 @@ public:
 	bool enterServiceRecord(ServiceRecord* record);
 
 private:
+	void loadProviders();
 	void editPerson(Person* person);
 	void validateServiceCode(Service* service);
 

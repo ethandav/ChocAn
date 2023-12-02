@@ -14,6 +14,7 @@ public:
 	~Filesystem() {};
 
 	std::string getProviderDirectory();
+	void loadProviders(std::vector<std::string>& providers);
 	bool getServiceByCode(Service* service, int lookupCode);
 	bool saveServiceRecord(ServiceRecord* record);
 	bool saveReportToFile(const std::string& subDirectory, const std::string& filename, const std::string& reportData);

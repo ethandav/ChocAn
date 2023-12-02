@@ -19,7 +19,40 @@ void DataCenter::start()
 	{
 		std::cerr << "Error: " << e.what() << std::endl;
 	}
+	loadProviders();
 	terminal.open();
+}
+
+void DataCenter::loadProviders()
+{
+	std::vector<std::string> providers;
+	filesystem.loadProviders(providers);
+
+	if (!providers.empty())
+	{
+		for (const std::string& entry : providers) {
+		    std::istringstream ss(entry);
+
+		    std::string token;
+		    std::vector<std::string> tokens;
+
+		    while (std::getline(ss, token, ',')) {
+		        tokens.push_back(token);
+		    }
+
+		    if (tokens.size() >= 5) {
+				Person* provider = new Person();
+				provider->name = tokens[0];
+				provider->number = stoi(tokens[1]);
+				provider->address.addr = tokens[2];
+				provider->address.city = tokens[3];
+				provider->address.state = tokens[4];
+				provider->address.zip = stoi(tokens[5]);
+
+				registerProvider(provider);
+		    }
+		}
+	}
 }
 
 /// <summary>
