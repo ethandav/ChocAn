@@ -285,19 +285,15 @@ bool Terminal::confirm()
 void Terminal::getPersonInput(Person* person)
 {
 	std::cout << "Name: ";
-	std::cin >> person->name;
-	flushInput();
+	std::getline(std::cin, person->name);
 	std::cout << "ID Number: ";
 	getIntInput(&person->number);
 	std::cout << "Street Address: ";
-	std::cin >> person->address.addr;
-	flushInput();
+	std::getline(std::cin, person->address.addr);
 	std::cout << "City: ";
-	std::cin >> person->address.city;
-	flushInput();
+	std::getline(std::cin, person->address.city);
 	std::cout << "State: ";
-	std::cin >> person->address.state;
-	flushInput();
+	std::getline(std::cin, person->address.state);
 	std::cout << "Zip: ";
 	getIntInput(&person->address.zip);
 }
