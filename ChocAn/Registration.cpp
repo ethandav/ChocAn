@@ -32,9 +32,17 @@ Registration::~Registration()
 /// <returns>True on successful insert</returns>
 bool Registration::registerMember(Person* member)
 {
-	if(member != nullptr && member->number){
-		members.push_back(member);
-		return true;
+	if (member != nullptr && member->number)
+	{
+		if (findByNumber(members, member->number) == nullptr)	
+		{	
+			members.push_back(member);
+			return true;
+		}
+		else
+		{
+			std::cerr << "Error: Duplicate member number '" << member->number << "' was detected.\n";
+		}
 	}
 	return false;
 }
@@ -46,9 +54,17 @@ bool Registration::registerMember(Person* member)
 /// <returns>True on successful insert</returns>
 bool Registration::registerProvider(Person* provider)
 {
-	if(provider != nullptr && provider->number){
-		providers.push_back(provider);
-		return true;
+	if (provider != nullptr && provider->number)
+	{
+		if (findByNumber(providers, provider->number) == nullptr)
+		{
+			providers.push_back(provider);
+			return true;
+		}
+		else
+		{
+			std::cerr << "Error: Duplicate provider number '" << provider->number << "' was detected.\n";
+		}
 	}
 	return false;
 }
