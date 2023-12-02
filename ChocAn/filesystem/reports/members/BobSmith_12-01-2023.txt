@@ -1,5 +1,0 @@
-Member Name: Bob Smith
-Member Number: 202632877
-Address: 456 Oak St
-Portland, OR 97202
-
