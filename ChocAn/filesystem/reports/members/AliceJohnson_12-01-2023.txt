@@ -1,0 +1,5 @@
+Member Name: Alice Johnson
+Member Number: 201514621
+Address: 123 Main St
+Portland, OR 97201
+
