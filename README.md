@@ -1,6 +1,6 @@
 # ChocAn
 This is an Implementation of the ChocAn project for CS314 by:<br>
-Ethan Davis, James Truong, Aaron Ma, Kevin Ruiz Arzate, Grace Trieu, Jesus Quintero
+Ethan Davis, James Truong, Aaron Mai, Kevin Ruiz Arzate, Grace Trieu, Jesus Quintero
 
 <h1>To Compile:</h1>
 <h2>Windows</h2>
