@@ -62,11 +62,24 @@ void Terminal::displayLogin()
 
 	while (true)
 	{
-		std::cout << "Welcome to ChocAn\n";
-		std::cout << "1 - ChocAn Manager Login\n";
-		std::cout << "2 - Provider Login" << std::endl;
-		std::cout << "9 - Quit" << std::endl;
-		std::cout << "Enter your Choice: ";
+	    std::cout << "\033[1;31m"; // to Set text color to bold and red
+        std::cout << "+--------------------------------------+" << std::endl;
+        std::cout << "|           Welcome to ChocAn          |" << std::endl;
+        std::cout << "+--------------------------------------+" << std::endl;
+        std::cout << "\033[0m";
+        std::cout << "| 1 - ChocAn Manager Login             |" << std::endl;
+        std::cout << "| 2 - Provider Login                   |" << std::endl;
+        std::cout << "| 9 - Quit                             |" << std::endl;
+		std::cout << "|--------------------------------------|" << std::endl;
+		std::cout << "| Enter your choice: [ ]               |" << std::endl;
+		std::cout << "\033[1;31m"; // Bold and red text
+		std::cout << "+--------------------------------------+" << std::endl;
+		std::cout << "|        © 2023 ChocAn Group 8         |" << std::endl;
+		std::cout << "+--------------------------------------+" << std::endl;
+		std::cout << "\033[0m"; 
+
+		std::cout << "\033[A\033[A\033[A\033[A"; 
+		std::cout << "\033[22C"; 
 		getIntInput(&choice);
 
 		switch (choice)
