@@ -24,37 +24,102 @@ void Terminal::open()
 {
 	int input = 0;
 	running = true;
+	isAdmin = false;
+
+	displayLogin();
+
+	if (isAdmin)
+	{
+		adminTerminal();
+
+	}
+	else
+	{
+		providerTerminal();
+	}
+
+}
+
+
+//// <summary>
+//// clears the screen for the menu to be redisplayed
+//// </summary>
+void Terminal::clearScreen()
+{
+#ifdef _WIN32
+    std::system("cls");
+#else
+    std::system("clear");
+#endif
+}
+
+void Terminal::displayLogin()
+{
+	int choice = 0; 
+
+	while (true)
+	{
+		std::cout << "Welcome to ChocAn\n";
+		std::cout << "1 - ChocAn Manager Login\n";
+		std::cout << "2 - Provider Login" << std::endl;
+		std::cout << "9 - Quit" << std::endl;
+		std::cout << "Enter your Choice: ";
+		getIntInput(&choice);
+
+		switch (choice)
+		{
+		case 1:
+			isAdmin = true;
+			return;
+			break;
+		case 2:
+			return;
+			break;
+		case 9:
+			running = false;
+			exit(0);
+			break;
+		default:
+			clearScreen();
+			break;
+		}
+	}
+}
+
+void Terminal::adminTerminal()
+{
+	int input = 0;
 
 	while (running)
 	{
-		displayMenu();
+		displayAdminMenu();
 		getIntInput(&input);
 		clearScreen();
 		switch (input)
 		{
 		case 1:
 			dc->registerMember();
+			waitForAny();
 			break;
 		case 2:
 			dc->registerProvider();
+			waitForAny();
 			break;
 		case 3:
 			dc->updateMember();
+			waitForAny();
 			break;
 		case 4:
 			dc->updateProvider();
+			waitForAny();
 			break;
 		case 5:
 			dc->removeMember();
+			waitForAny();
 			break;
 		case 6:
 			dc->removeProvider();
-			break;
-		case 7:
-			dc->getProviderDirectory();
-			break;
-		case 8:
-			dc->enterServiceRecord();
+			waitForAny();
 			break;
 		case 9:
 			running = false;
@@ -67,53 +132,35 @@ void Terminal::open()
 	}
 }
 
-
-//// <summary>
-//// clears the screen for the menu to be redisplayed
-//// </summary>
-void Terminal::clearScreen()
+void Terminal::providerTerminal()
 {
-    #ifdef _WIN32
-    std::system("cls");
-    #else
-    std::system("clear");
-    #endif
+	int input = 0;
+
+	while (running)
+	{
+		displayProviderMenu();
+		getIntInput(&input);
+		switch (input)
+		{
+		case 1:
+			dc->getProviderDirectory();
+			waitForAny();
+			break;
+		case 2:
+			dc->enterServiceRecord();
+			waitForAny();
+			break;
+		case 9:
+			running = false;
+			break;
+		default:
+			break;
+		}
+	}
 }
 
-
-
-/// <summary>
-/// Shows Main Menu
-/// </summary>
-void Terminal::displayMenu()
+void Terminal::displayAdminMenu()
 {
-	
-	/*
-	std::cout << "Welcome to ChocAn! Enter 9 to quit\n";
-	std::cout << "1 - Register Member\n";
-	std::cout << "2 - Register Provider\n";
-	std::cout << "3 - Update Member\n";
-	std::cout << "4 - Update Provider\n";
-	std::cout << "5 - Remove Member\n";
-	std::cout << "6 - Remove Provider\n";
-	std::cout << "7 - Show Provider Directory\n";
-	std::cout << "8 - Enter Service Record" << std::endl;
-	std::cout << "Enter your choice: ";
-	
-	
-	// Alternate menu display
-	std::cout << "Welcome to ChocAn! Enter (9) to quit\n";
-	std::cout << "(1) Register Member\t\t (2) Register Provider\n";
-	std::cout << "(3) Update Member\t\t (4) Update Provider\n";
-	std::cout << "(5) Remove Member\t\t (6) Remove Provider\n";
-	std::cout << "(7) Show Provider Directory\t (8) Enter Service Record\n";
-	std::cout << "Enter your choice: ";
-	*/
-
-	
-	// Alternate Alternate Menu option
-    std::cout << "Press any key to return to the main menu...";
-    std::cin.get(); 
     clearScreen(); 
 
     std::cout << "\033[1;31m"; // Bold and red text
@@ -129,8 +176,6 @@ void Terminal::displayMenu()
     std::cout << "| 4 - Update Provider                  |" << std::endl;
     std::cout << "| 5 - Remove Member                    |" << std::endl;
     std::cout << "| 6 - Remove Provider                  |" << std::endl;
-    std::cout << "| 7 - Show Provider Directory          |" << std::endl;
-    std::cout << "| 8 - Enter Service Record             |" << std::endl;
     std::cout << "|--------------------------------------|" << std::endl;
     std::cout << "| Enter your choice: [ ]               |" << std::endl;
     std::cout << "\033[1;31m"; // Bold and red text
@@ -141,8 +186,34 @@ void Terminal::displayMenu()
 
     std::cout << "\033[A\033[A\033[A\033[A"; 
     std::cout << "\033[22C"; 
-	
+}
 
+/// <summary>
+/// Shows Main Menu
+/// </summary>
+void Terminal::displayProviderMenu()
+{
+    clearScreen(); 
+
+    std::cout << "\033[1;31m"; // Bold and red text
+    std::cout << "+--------------------------------------+" << std::endl;
+    std::cout << "|               ChocAn                 |" << std::endl;
+    std::cout << "+--------------------------------------+" << std::endl;
+    std::cout << "\033[0m"; 
+    std::cout << "| Welcome to ChocAn! Enter 9 to quit   |" << std::endl;
+    std::cout << "|--------------------------------------|" << std::endl;
+    std::cout << "| 1 - Show Provider Directory          |" << std::endl;
+    std::cout << "| 2 - Enter Service Record             |" << std::endl;
+    std::cout << "|--------------------------------------|" << std::endl;
+    std::cout << "| Enter your choice: [ ]               |" << std::endl;
+    std::cout << "\033[1;31m"; // Bold and red text
+    std::cout << "+--------------------------------------+" << std::endl;
+    std::cout << "|        © 2023 ChocAn Group 8         |" << std::endl;
+    std::cout << "+--------------------------------------+" << std::endl;
+    std::cout << "\033[0m"; 
+
+    std::cout << "\033[A\033[A\033[A\033[A"; 
+    std::cout << "\033[22C"; 
 }
 
 /// <summary>
@@ -271,6 +342,11 @@ void Terminal::displayString(std::string displayStr)
     }
 }
 
+void Terminal::waitForAny()
+{
+    std::cout << "Press any key to return to the main menu...";
+    std::cin.get(); 
+}
 
 /// <summary>
 /// Flushes ci between multiple string inputs

@@ -23,8 +23,14 @@ public:
 	void clearScreen();
 private:
 	bool running;
+	bool isAdmin;
 	DataCenter* dc;
 
-	void displayMenu();
+	void displayLogin();
+	void adminTerminal();
+	void providerTerminal();
+	void displayAdminMenu();
+	void displayProviderMenu();
+	void waitForAny();
 	void flushInput();
 };

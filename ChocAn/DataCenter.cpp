@@ -191,7 +191,6 @@ void DataCenter::generateMemberReport()
 	{
 		terminal.displayString("Member Report Generation Failed\n");
 	}
-	
 }
 
 void DataCenter::generateProviderReport()
