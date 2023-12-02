@@ -37,7 +37,7 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
                 }
             }
             
-            std::string filename = memberPtr->name + "_" + currentDate + ".txt";
+            std::string filename = removeWhiteSpace(memberPtr->name) + "_" + currentDate + ".txt";
             if (!filesystem.saveReportToFile("members", filename, report.str()))
             {
                 return false;
@@ -48,7 +48,6 @@ bool Reports::generateMemberReports(const std::list<Person*>& members, Registrat
     else
         return false;
 }
-
 
 bool Reports::generateProviderReports(const std::list<Person*>& providers, Registration& registration, Filesystem &filesystem)
 {
@@ -85,7 +84,7 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
             report << "Number of Consultations: " << numberOfConsultations << std::endl;
             report << "Total Fee for the Week: $" << std::fixed << std::setprecision(2) << totalFee << std::endl;
 
-            std::string filename = providerPtr->name + "_" + currentDate + ".txt";
+            std::string filename = removeWhiteSpace(providerPtr->name) + "_" + currentDate + ".txt";
             if (!filesystem.saveReportToFile("providers", filename, report.str()))
             {
                 return false;
@@ -94,11 +93,11 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
             if (totalFee > 0.0)
             {
                 std::stringstream EFT;
-                EFT << "Name: " << providerPtr-> name << "\n";
+                EFT << "Name: " << providerPtr->name << "\n";
                 EFT << "Provider Number: " << providerPtr->number << "\n";
                 EFT << "Amount to be Transferred: " << totalFee << "\n";
 
-                std::string filenameEFT = "EFT_" + providerPtr->name + "_" + currentDate + ".txt";
+                std::string filenameEFT = "EFT_" + removeWhiteSpace(providerPtr->name) + "_" + currentDate + ".txt";
                 if (!filesystem.saveReportToFile("EFT", filenameEFT, EFT.str()))
                 {
                     return false;
@@ -109,7 +108,8 @@ bool Reports::generateProviderReports(const std::list<Person*>& providers, Regis
     }
     else
         return false;
-}
+} 
+
 bool Reports::generateSummaryReport(const std::list<Person*>& providers, Filesystem &filesystem)
 {
     std::stringstream report;
@@ -153,7 +153,6 @@ bool Reports::generateSummaryReport(const std::list<Person*>& providers, Filesys
     }
     return false;
 }
-
 // Current date helper function
 std::string Reports::getCurrentDate()
 {
@@ -170,6 +169,19 @@ std::string Reports::getCurrentDate()
 #endif
 
     return date.str();
+}
+// Helper to remove whitespace for file saving name 
+std::string Reports::removeWhiteSpace(const std::string& str)
+{
+    std::string updatedStr;
+    for (char ch : str) 
+    {
+        if (!isspace(ch))
+        {
+            updatedStr += ch;
+        }
+    }
+    return updatedStr;
 }
 // Member detail format
 std::string Reports::formatMemberDetails(const Person& member) 
