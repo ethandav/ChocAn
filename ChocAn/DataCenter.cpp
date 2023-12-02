@@ -24,6 +24,9 @@ void DataCenter::start()
 	terminal.open();
 }
 
+/// <summary>
+/// Loads providers from the file system and registers them with the Registration class
+/// </summary>
 void DataCenter::loadProviders()
 {
 	std::vector<std::string> providers;
@@ -56,6 +59,9 @@ void DataCenter::loadProviders()
 	}
 }
 
+/// <summary>
+/// Loads Members from the file system and registers them with the Registration class
+/// </summary>
 void DataCenter::loadMembers()
 {
 	std::vector<std::string> members;

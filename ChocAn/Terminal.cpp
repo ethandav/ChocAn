@@ -53,6 +53,9 @@ void Terminal::clearScreen()
 #endif
 }
 
+/// <summary>
+/// Determines which Terminal view should be simulated
+/// </summary>
 void Terminal::displayLogin()
 {
 	int choice = 0; 
@@ -86,6 +89,9 @@ void Terminal::displayLogin()
 	}
 }
 
+/// <summary>
+/// Handles functionality for the Admin Terminal
+/// </summary>
 void Terminal::adminTerminal()
 {
 	int input = 0;
@@ -121,6 +127,14 @@ void Terminal::adminTerminal()
 			dc->removeProvider();
 			waitForAny();
 			break;
+		case 7:
+			dc->generateProviderReport();
+			waitForAny();
+			break;
+		case 8:
+			dc->generateMemberReport();
+			waitForAny();
+			break;
 		case 9:
 			running = false;
 			break;
@@ -132,6 +146,9 @@ void Terminal::adminTerminal()
 	}
 }
 
+/// <summary>
+/// Handles functionality for the Providers Terminal
+/// </summary>
 void Terminal::providerTerminal()
 {
 	int input = 0;
@@ -177,6 +194,8 @@ void Terminal::displayAdminMenu()
     std::cout << "| 4 - Update Provider                  |" << std::endl;
     std::cout << "| 5 - Remove Member                    |" << std::endl;
     std::cout << "| 6 - Remove Provider                  |" << std::endl;
+    std::cout << "| 7 - Generate Provider Report         |" << std::endl;
+    std::cout << "| 8 - Generate Member Report           |" << std::endl;
     std::cout << "|--------------------------------------|" << std::endl;
     std::cout << "| Enter your choice: [ ]               |" << std::endl;
     std::cout << "\033[1;31m"; // Bold and red text
